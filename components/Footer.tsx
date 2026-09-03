@@ -1,15 +1,34 @@
 "use client";
 
+import Image from "next/image";
 export default function Footer() {
   return (
     <div className="relative w-full">
-      {/* Grass background behind footer */}
+      {/* Mobile Grass background behind footer */}
       <div 
-        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+        className="absolute inset-x-0 bottom-0 top-[15vh] w-full z-0 pointer-events-none md:hidden"
+        style={{
+          backgroundImage: 'url(/grass-mobile.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'top center',
+          transform: 'translateZ(0)',
+          WebkitTransform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+        }}
+      />
+
+      {/* Desktop Grass background behind footer */}
+      <div 
+        className="absolute inset-x-0 bottom-0 top-20 w-full z-0 pointer-events-none hidden md:block"
         style={{
           backgroundImage: 'url(/grass-only.png)',
           backgroundSize: 'cover',
-          backgroundPosition: 'top center'
+          backgroundPosition: 'top center',
+          transform: 'translateZ(0)',
+          WebkitTransform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
         }}
       />
 

@@ -165,9 +165,9 @@ export default function Hero() {
   return (
     <section 
       ref={container} 
-      className="relative min-h-screen flex flex-col items-center justify-center pt-52 md:pt-32 pb-4 md:pb-12 px-6 lg:px-12 overflow-hidden bg-white"
+      className="relative min-h-screen flex flex-col items-center justify-center pt-40 md:pt-32 pb-4 md:pb-12 px-6 lg:px-12 overflow-hidden bg-white"
     >
-      <div className="max-w-5xl mx-auto w-full z-10 flex flex-col items-center mt-12 sm:mt-0">
+      <div className="max-w-5xl mx-auto w-full z-10 flex flex-col items-center sm:mt-0">
         
         {/* Top: Headline & Subtext (z-10 so books can scroll on top of it) */}
         <div className="hero-text flex flex-col items-center text-center w-full z-10">
@@ -199,7 +199,6 @@ export default function Hero() {
                     alt="?" 
                     width={800} 
                     height={800}
-                    unoptimized
                     style={{ filter: 'saturate(1.5) contrast(1.005) brightness(1.05)' }}
                     className="gsap-qmark inline-block h-[1.4em] w-[1.4em] -ml-2 sm:-ml-4 md:-ml-8 lg:-ml-12 -mt-2 align-middle object-contain invisible opacity-0" 
                   />
@@ -239,7 +238,6 @@ export default function Hero() {
                     alt="?" 
                     width={800} 
                     height={800}
-                    unoptimized
                     style={{ filter: 'saturate(1.5) contrast(1.005) brightness(1.05)' }}
                     className="gsap-qmark inline-block h-[1.4em] w-[1.4em] -ml-6 sm:-ml-4 -mt-2 align-middle object-contain invisible opacity-0" 
                   />
@@ -248,7 +246,7 @@ export default function Hero() {
             </div>
           </h1>
           <p className="gsap-paragraph text-[15.5px] sm:text-lg md:text-xl text-[var(--color-dark)]/80 max-w-2xl leading-relaxed font-normal invisible opacity-0 mt-3 md:mt-1 -mx-4 sm:mx-0">
-            An honest conversation on brokenness, purpose, <br className="block sm:hidden" /> grace, and a God who uses imperfect people
+            An honest conversation on brokenness, purpose, <br className="block sm:hidden" /> grace, and a God who uses imperfect people.
           </p>
         </div>
 
@@ -257,17 +255,17 @@ export default function Hero() {
           
           {/* Left Book Clip */}
           <div className="gsap-book-left absolute inset-0 z-10 invisible opacity-0" style={{ clipPath: 'inset(0 60% 0 0)' }}>
-            <Image src="/three versions.png" alt="" fill className="object-contain" unoptimized priority />
+            <Image src="/three versions.png" alt="" fill className="object-contain" priority />
           </div>
 
           {/* Right Book Clip */}
           <div className="gsap-book-right absolute inset-0 z-10 invisible opacity-0" style={{ clipPath: 'inset(0 0 0 60%)' }}>
-            <Image src="/three versions.png" alt="" fill className="object-contain" unoptimized priority />
+            <Image src="/three versions.png" alt="" fill className="object-contain" priority />
           </div>
 
           {/* Center Book Clip */}
           <div className="gsap-book-center absolute inset-0 z-20 invisible opacity-0" style={{ clipPath: 'inset(0 25% 0 25%)' }}>
-            <Image src="/three versions.png" alt="(un)Fit Book Cover" fill className="object-contain" unoptimized priority />
+            <Image src="/three versions.png" alt="(un)Fit Book Cover" fill className="object-contain" priority />
           </div>
 
         </div>
@@ -294,17 +292,17 @@ export default function Hero() {
             <img 
               src="/Un-fit.svg" 
               alt="(un)Fit" 
-              className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-28 lg:h-36" 
+              className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-36 lg:h-48" 
             />
             <img 
               src="/amazon.svg" 
               alt="Amazon" 
-              className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-28 lg:h-36" 
+              className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-36 lg:h-48" 
             />
             <img 
               src="/selar.svg" 
               alt="Selar" 
-              className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-28 lg:h-36" 
+              className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-36 lg:h-48" 
             />
           </div>
         </div>

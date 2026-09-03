@@ -43,6 +43,33 @@ export default function VideoEmbed() {
     if (player) {
       player.play();
       setHasPlayed(true);
+      
+      // Auto-fullscreen on mobile
+      if (window.innerWidth < 768) {
+        try {
+          const lockLandscape = () => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const orientation: any = screen.orientation;
+            if (orientation && orientation.lock) {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              orientation.lock("landscape").catch((e: any) => console.log("Orientation lock failed", e));
+            }
+          };
+
+          if (player.requestFullscreen) {
+            const promise = player.requestFullscreen();
+            if (promise) promise.then(lockLandscape).catch(() => {});
+            else lockLandscape();
+          } else if (player.webkitRequestFullscreen) {
+            player.webkitRequestFullscreen();
+            lockLandscape();
+          } else if (player.media && player.media.webkitEnterFullscreen) {
+            player.media.webkitEnterFullscreen();
+          }
+        } catch (e) {
+          console.error("Fullscreen request failed", e);
+        }
+      }
     }
   };
 
@@ -95,6 +122,15 @@ export default function VideoEmbed() {
               }
               .is-unplayed::part(bottom) {
                 display: none;
+              }
+              @media (max-width: 768px) {
+                .custom-player::part(bottom) {
+                  transform: scale(1);
+                  width: 100%;
+                  margin-bottom: 0;
+                  border-radius: 0;
+                  padding: 0 12px;
+                }
               }
             `}</style>
 

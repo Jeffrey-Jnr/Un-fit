@@ -42,7 +42,7 @@ export default function WhyIWroteThis() {
   }, { scope: container });
 
   return (
-    <section ref={container} id="why-this-book" className="mt-0 md:mt-12 lg:mt-16 py-10 md:py-20 lg:py-24 px-6 lg:px-12 min-h-screen flex flex-col justify-center relative overflow-hidden">
+    <section ref={container} id="why-this-book" className="mt-16 sm:mt-20 md:mt-12 lg:mt-16 py-10 md:py-20 lg:py-24 px-6 lg:px-12 min-h-screen flex flex-col justify-center relative overflow-hidden">
       
       {/* Abstract Background Image */}
       <Image
@@ -51,7 +51,6 @@ export default function WhyIWroteThis() {
         fill
         className="object-cover object-center opacity-70 z-0"
         priority
-        unoptimized
       />
       
       {/* Seamless blend gradient */}
