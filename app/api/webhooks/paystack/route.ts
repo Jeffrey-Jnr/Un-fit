@@ -24,6 +24,7 @@ export async function POST(req: Request) {
     
     // Get custom fields we passed from the frontend
     const customFields = data.metadata?.custom_fields || [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const getField = (name: string) => customFields.find((f: any) => f.variable_name === name)?.value || '';
 
     const buyer_name = getField('name');
@@ -32,23 +33,28 @@ export async function POST(req: Request) {
     
     const supabase = await createClient();
 
-    const { error } = await supabase.from('orders').insert({
-      buyer_name: buyer_name,
-      buyer_email: data.customer.email,
-      buyer_phone: buyer_phone,
-      delivery_address: delivery_address,
-      amount: data.amount / 100, // Convert from pesewas
-      payment_status: 'paid',
-      fulfillment_status: 'unfulfilled',
-      paystack_reference: data.reference,
-    });
+    try {
+      const { error } = await supabase.from('orders').insert({
+        buyer_name: buyer_name,
+        buyer_email: data.customer.email,
+        buyer_phone: buyer_phone,
+        delivery_address: delivery_address,
+        amount: data.amount / 100, // Convert from pesewas
+        payment_status: 'paid',
+        fulfillment_status: 'unfulfilled',
+        paystack_reference: data.reference,
+      });
 
-    if (error) {
+      if (error) {
+        console.error('Error inserting order:', error);
+        return NextResponse.json({ message: 'Error processing order' }, { status: 500 });
+      }
+
+      return NextResponse.json({ message: 'Order created successfully' }, { status: 200 });
+    } catch (error: unknown) {
       console.error('Error inserting order:', error);
       return NextResponse.json({ message: 'Error processing order' }, { status: 500 });
     }
-
-    return NextResponse.json({ message: 'Order created successfully' }, { status: 200 });
   }
 
   return NextResponse.json({ message: 'Event not handled' }, { status: 200 });

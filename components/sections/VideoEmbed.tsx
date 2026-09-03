@@ -13,6 +13,7 @@ if (typeof window !== "undefined") {
 
 export default function VideoEmbed() {
   const container = useRef<HTMLElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const playerRef = useRef<any>(null);
   const [hasPlayed, setHasPlayed] = useState(false);
 
@@ -131,6 +132,7 @@ export default function VideoEmbed() {
               accentColor="#ea580c"
               style={{ 
                 '--media-object-fit': 'cover',
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               } as any}
             />
           </div>

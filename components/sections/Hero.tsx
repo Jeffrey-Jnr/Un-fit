@@ -120,16 +120,7 @@ export default function Hero() {
       "-=0.7"
     );
 
-    // 7. Final settling motion (floating)
-    tl.add(() => {
-      gsap.to(".hero-books-container", {
-        y: -4,
-        duration: 5,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true
-      });
-    });
+    // 7. (Floating effect removed)
 
     // 8. Scroll effect: Pin heading and smoothly blur/fade it out as books rise (Desktop / Tablet only)
     const mm = gsap.matchMedia();
@@ -174,9 +165,9 @@ export default function Hero() {
   return (
     <section 
       ref={container} 
-      className="relative min-h-screen flex flex-col items-center justify-center pt-40 md:pt-32 pb-4 md:pb-12 px-6 lg:px-12 overflow-hidden bg-white"
+      className="relative min-h-screen flex flex-col items-center justify-center pt-52 md:pt-32 pb-4 md:pb-12 px-6 lg:px-12 overflow-hidden bg-white"
     >
-      <div className="max-w-5xl mx-auto w-full z-10 flex flex-col items-center">
+      <div className="max-w-5xl mx-auto w-full z-10 flex flex-col items-center mt-12 sm:mt-0">
         
         {/* Top: Headline & Subtext (z-10 so books can scroll on top of it) */}
         <div className="hero-text flex flex-col items-center text-center w-full z-10">
@@ -299,21 +290,21 @@ export default function Hero() {
             </button>
           </div>
           
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 mt-10 w-full grayscale hover:grayscale-0 transition-all duration-500 opacity-80 invisible opacity-0">
+          <div className="flex flex-row items-center justify-between sm:justify-center gap-2 sm:gap-8 md:gap-12 mt-8 sm:mt-10 w-full max-w-[420px] sm:max-w-none mx-auto grayscale hover:grayscale-0 transition-all duration-500 opacity-80 invisible opacity-0 px-2 sm:px-0">
             <img 
               src="/Un-fit.svg" 
               alt="(un)Fit" 
-              className="object-contain h-24 sm:h-36 w-auto" 
+              className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-28 lg:h-36" 
             />
             <img 
               src="/amazon.svg" 
               alt="Amazon" 
-              className="object-contain h-24 sm:h-36 w-auto" 
+              className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-28 lg:h-36" 
             />
             <img 
               src="/selar.svg" 
               alt="Selar" 
-              className="object-contain h-24 sm:h-36 w-auto" 
+              className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-28 lg:h-36" 
             />
           </div>
         </div>

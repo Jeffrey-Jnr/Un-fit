@@ -21,7 +21,7 @@ export default function PageFlipTest() {
       // We pin the container so it stays in view while we scroll
       // and we animate the pages within it.
       
-      let tl = gsap.timeline({
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",

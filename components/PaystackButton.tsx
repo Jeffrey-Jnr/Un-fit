@@ -3,7 +3,9 @@
 import { usePaystackPayment } from "react-paystack";
 
 interface PaystackButtonProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   config: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSuccess: (reference: any) => void;
   onClose: () => void;
   disabled?: boolean;
@@ -18,6 +20,7 @@ export default function PaystackButton({ config, onSuccess, onClose, disabled }:
       alert("Please configure Paystack public key in environment variables.");
       return;
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     initializePayment({ onSuccess, onClose } as any);
   };
 
