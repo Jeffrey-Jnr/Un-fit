@@ -30,7 +30,7 @@ export default function TheStruggle() {
     <section ref={container} className="py-24 px-6 bg-[var(--color-dark)] text-white relative">
       <div className="max-w-3xl mx-auto text-center md:text-left">
         <div className="space-y-8 font-serif text-2xl md:text-4xl leading-relaxed font-light text-gray-200">
-          <p className="struggle-line opacity-0">Maybe you've made mistakes.</p>
+          <p className="struggle-line opacity-0">Maybe you&apos;ve made mistakes.</p>
           <p className="struggle-line opacity-0 text-gray-400">Maybe life has left you with scars.</p>
           <p className="struggle-line opacity-0 leading-snug">
             Maybe you love God but still struggle with parts of yourself that make you feel <span className="text-[var(--color-primary)] italic">unqualified</span> for the life He has called you to.

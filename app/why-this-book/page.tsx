@@ -68,7 +68,7 @@ export default function WhyThisBook() {
         {/* Paragraph Text */}
         <div className="text-center text-lg md:text-2xl font-medium space-y-6 max-w-3xl leading-relaxed text-gray-900 mt-8">
           <p>
-            Maybe you've made mistakes.<br/>
+            Maybe you&apos;ve made mistakes.<br/>
             Maybe life has left you with scars.<br/>
             Maybe you love God but still struggle with parts of yourself that make you feel unqualified for the life He has called you to.
           </p>
@@ -79,7 +79,7 @@ export default function WhyThisBook() {
             (un)Fit is an honest conversation about brokenness, purpose, grace, and the kind of God who has never been afraid to use imperfect people.
           </p>
           <p>
-            Your weaknesses don't automatically cancel your calling. Your worst moments don't get to write the ending of your story.
+            Your weaknesses don&apos;t automatically cancel your calling. Your worst moments don&apos;t get to write the ending of your story.
           </p>
         </div>
 

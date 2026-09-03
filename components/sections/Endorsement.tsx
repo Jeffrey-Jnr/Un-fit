@@ -53,7 +53,7 @@ export default function Endorsement() {
         </div>
         
         <h3 className="endorsement-text text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-zinc-900 leading-tight mb-10 opacity-0">
-          "{content.quote}"
+          &quot;{content.quote}&quot;
         </h3>
         
         <div className="endorsement-author flex flex-col items-center opacity-0">
