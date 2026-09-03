@@ -125,11 +125,12 @@ export default function VideoEmbed() {
               }
               @media (max-width: 768px) {
                 .custom-player::part(bottom) {
-                  transform: scale(1);
-                  width: 100%;
-                  margin-bottom: 0;
-                  border-radius: 0;
-                  padding: 0 12px;
+                  transform: scale(1.15);
+                  transform-origin: bottom center;
+                  width: 82%;
+                  margin-bottom: 16px;
+                  border-radius: 100px;
+                  padding: 4px 12px;
                 }
               }
             `}</style>
