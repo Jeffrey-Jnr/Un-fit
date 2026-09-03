@@ -83,7 +83,6 @@ export default function Navbar() {
                   : "w-[115px] sm:w-[130px] -left-1 sm:-left-1.5"
               }`}
               priority
-              unoptimized
             />
           </div>
         </button>
