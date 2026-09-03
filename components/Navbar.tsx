@@ -73,7 +73,7 @@ export default function Navbar() {
         >
           <div className="w-full h-full relative" style={{ clipPath: 'inset(0 100% 0 0)' }} id="logo-mask">
             <Image
-              src="/nav bar logo.png"
+              src="/unfit-lg.png"
               alt="(Un)Fit Logo"
               width={300}
               height={300}
@@ -83,7 +83,6 @@ export default function Navbar() {
                   : "w-[115px] sm:w-[130px] -left-1 sm:-left-1.5"
               }`}
               priority
-              unoptimized
             />
           </div>
         </button>

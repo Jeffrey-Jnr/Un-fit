@@ -32,7 +32,7 @@ export default function BuySection() {
   }, { scope: container });
 
   return (
-    <section id="buy" ref={container} className="relative">
+    <section id="buy" ref={container} className="relative z-10">
       
       {/* ─── CTA ZONE: White → Warm Beige gradient ─── */}
       <div 

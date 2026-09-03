@@ -6,7 +6,7 @@ export default function Footer() {
     <div className="relative w-full">
       {/* Mobile Grass background behind footer */}
       <div 
-        className="absolute inset-x-0 bottom-0 top-[15vh] w-full z-0 pointer-events-none md:hidden"
+        className="absolute inset-x-0 bottom-0 -top-10 w-full z-0 pointer-events-none md:hidden"
         style={{
           backgroundImage: 'url(/grass-mobile.png)',
           backgroundSize: 'cover',
@@ -38,9 +38,10 @@ export default function Footer() {
             
             {/* Left Column */}
             <div className="col-span-1 md:col-span-1 -mt-6">
-              <img 
-                src="/Un-fit.svg" 
+              <Image 
+                src="/unfit-lg.png" 
                 alt="(un)Fit Logo" 
+                width={800} height={400}
                 className="h-24 w-auto -mt-4 -mb-7 object-contain brightness-0 relative z-10"
               />
               <p className="text-gray-600 mb-4 text-sm relative z-20">

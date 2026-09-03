@@ -1,26 +1,58 @@
-import { createClient } from '@/utils/supabase/server';
-import { redirect } from 'next/navigation';
+// import { createClient } from '@/utils/supabase/server';
+// import { redirect } from 'next/navigation';
 
 export default async function AdminDashboard() {
-  const supabase = await createClient();
-  const { data: { session } } = await supabase.auth.getSession();
+  // const supabase = await createClient();
+  // const { data: { session } } = await supabase.auth.getSession();
+  // 
+  // if (!session) {
+  //   redirect('/admin/login');
+  // }
+  // 
+  // const { data: orders, error } = await supabase
+  //   .from('orders')
+  //   .select('*')
+  //   .order('created_at', { ascending: false });
 
-  if (!session) {
-    redirect('/admin/login');
-  }
-
-  const { data: orders, error } = await supabase
-    .from('orders')
-    .select('*')
-    .order('created_at', { ascending: false });
+  // Mock data for previewing without Supabase
+  const orders: { id: string; created_at: string; buyer_name: string; buyer_email: string; buyer_phone: string; amount: number; payment_status: string; fulfillment_status: string; }[] = [
+    {
+      id: '1',
+      created_at: '2026-09-03T10:00:00Z',
+      buyer_name: 'John Doe',
+      buyer_email: 'john@example.com',
+      buyer_phone: '+233 24 123 4567',
+      amount: 150.00,
+      payment_status: 'paid',
+      fulfillment_status: 'pending'
+    },
+    {
+      id: '2',
+      created_at: '2026-09-02T10:00:00Z',
+      buyer_name: 'Jane Smith',
+      buyer_email: 'jane@example.com',
+      buyer_phone: '+233 20 987 6543',
+      amount: 450.00,
+      payment_status: 'paid',
+      fulfillment_status: 'processing'
+    },
+    {
+      id: '3',
+      created_at: '2026-09-01T10:00:00Z',
+      buyer_name: 'Kwame Mensah',
+      buyer_email: 'kwame@example.com',
+      buyer_phone: '+233 27 555 1234',
+      amount: 450.00,
+      payment_status: 'paid',
+      fulfillment_status: 'shipped'
+    }
+  ];
 
   return (
     <div>
       <h2 className="text-2xl font-bold text-gray-900 mb-6">Recent Orders</h2>
       
-      {error ? (
-        <div className="bg-red-50 text-red-600 p-4 rounded">Error loading orders: {error.message}</div>
-      ) : orders?.length === 0 ? (
+      {orders?.length === 0 ? (
         <div className="bg-white p-8 rounded border border-gray-200 text-center text-gray-500">
           No orders found yet.
         </div>

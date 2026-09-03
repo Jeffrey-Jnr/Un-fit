@@ -289,9 +289,10 @@ export default function Hero() {
           </div>
           
           <div className="flex flex-row items-center justify-between sm:justify-center gap-2 sm:gap-8 md:gap-12 mt-8 sm:mt-10 w-full max-w-[420px] sm:max-w-none mx-auto grayscale hover:grayscale-0 transition-all duration-500 opacity-80 invisible opacity-0 px-2 sm:px-0">
-            <img 
-              src="/Un-fit.svg" 
+            <Image 
+              src="/unfit-lg.png" 
               alt="(un)Fit" 
+              width={800} height={400}
               className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-36 lg:h-48" 
             />
             <img 
@@ -299,9 +300,10 @@ export default function Hero() {
               alt="Amazon" 
               className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-36 lg:h-48" 
             />
-            <img 
-              src="/selar.svg" 
+            <Image 
+              src="/sellar-lg.png" 
               alt="Selar" 
+              width={800} height={400}
               className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-36 lg:h-48" 
             />
           </div>

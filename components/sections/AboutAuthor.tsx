@@ -46,12 +46,12 @@ export default function AboutAuthor() {
       <div className="w-full flex flex-col-reverse md:flex-row items-stretch">
         
         {/* Left Side: Photo */}
-        <div className="author-image w-full md:w-2/5 lg:w-[45%] h-[50vh] md:h-auto min-h-[500px] lg:min-h-[700px] relative bg-gray-100 flex items-end justify-center overflow-hidden opacity-0 will-change-transform">
+        <div className="author-image w-full md:w-2/5 lg:w-[45%] h-[50vh] md:h-auto min-h-[500px] lg:min-h-[700px] relative bg-white flex items-end justify-center overflow-hidden opacity-0 will-change-transform">
           <Image 
-            src="/Jeff.png" 
+            src="/Jeffrey.jpg" 
             alt="Jeffrey Hughes Jr." 
             fill
-            className="object-cover object-center grayscale contrast-125 brightness-90"
+            className="object-cover object-bottom md:object-center grayscale contrast-125 brightness-90"
           />
           
           {/* Seamless Horizontal Fade (Desktop) */}
