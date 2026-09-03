@@ -1,18 +1,53 @@
-import { createClient } from '@/utils/supabase/server';
-import { redirect } from 'next/navigation';
+// import { createClient } from '@/utils/supabase/server';
+// import { redirect } from 'next/navigation';
 
 export default async function AdminDashboard() {
-  const supabase = await createClient();
-  const { data: { session } } = await supabase.auth.getSession();
+  // const supabase = await createClient();
+  // const { data: { session } } = await supabase.auth.getSession();
+  // 
+  // if (!session) {
+  //   redirect('/admin/login');
+  // }
+  // 
+  // const { data: orders, error } = await supabase
+  //   .from('orders')
+  //   .select('*')
+  //   .order('created_at', { ascending: false });
 
-  if (!session) {
-    redirect('/admin/login');
-  }
-
-  const { data: orders, error } = await supabase
-    .from('orders')
-    .select('*')
-    .order('created_at', { ascending: false });
+  // Mock data for previewing without Supabase
+  const error: { message: string } | null = null;
+  const orders: { id: string; created_at: string; buyer_name: string; buyer_email: string; buyer_phone: string; amount: number; payment_status: string; fulfillment_status: string; }[] = [
+    {
+      id: '1',
+      created_at: '2026-09-03T10:00:00Z',
+      buyer_name: 'John Doe',
+      buyer_email: 'john@example.com',
+      buyer_phone: '+233 24 123 4567',
+      amount: 150.00,
+      payment_status: 'paid',
+      fulfillment_status: 'pending'
+    },
+    {
+      id: '2',
+      created_at: '2026-09-02T10:00:00Z',
+      buyer_name: 'Jane Smith',
+      buyer_email: 'jane@example.com',
+      buyer_phone: '+233 20 987 6543',
+      amount: 450.00,
+      payment_status: 'paid',
+      fulfillment_status: 'processing'
+    },
+    {
+      id: '3',
+      created_at: '2026-09-01T10:00:00Z',
+      buyer_name: 'Kwame Mensah',
+      buyer_email: 'kwame@example.com',
+      buyer_phone: '+233 27 555 1234',
+      amount: 450.00,
+      payment_status: 'paid',
+      fulfillment_status: 'shipped'
+    }
+  ];
 
   return (
     <div>

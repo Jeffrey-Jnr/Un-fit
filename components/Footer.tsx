@@ -6,7 +6,7 @@ export default function Footer() {
     <div className="relative w-full">
       {/* Mobile Grass background behind footer */}
       <div 
-        className="absolute inset-x-0 bottom-0 top-[15vh] w-full z-0 pointer-events-none md:hidden"
+        className="absolute inset-x-0 bottom-0 -top-10 w-full z-0 pointer-events-none md:hidden"
         style={{
           backgroundImage: 'url(/grass-mobile.png)',
           backgroundSize: 'cover',
