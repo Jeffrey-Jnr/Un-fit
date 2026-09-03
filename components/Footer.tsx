@@ -39,7 +39,7 @@ export default function Footer() {
             {/* Left Column */}
             <div className="col-span-1 md:col-span-1 -mt-6">
               <Image 
-                src="/Un-fit.png" 
+                src="/unfit-lg.png" 
                 alt="(un)Fit Logo" 
                 width={800} height={400}
                 className="h-24 w-auto -mt-4 -mb-7 object-contain brightness-0 relative z-10"

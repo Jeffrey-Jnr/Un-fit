@@ -15,7 +15,6 @@ export default async function AdminDashboard() {
   //   .order('created_at', { ascending: false });
 
   // Mock data for previewing without Supabase
-  const error: { message: string } | null = null;
   const orders: { id: string; created_at: string; buyer_name: string; buyer_email: string; buyer_phone: string; amount: number; payment_status: string; fulfillment_status: string; }[] = [
     {
       id: '1',
@@ -53,9 +52,7 @@ export default async function AdminDashboard() {
     <div>
       <h2 className="text-2xl font-bold text-gray-900 mb-6">Recent Orders</h2>
       
-      {error ? (
-        <div className="bg-red-50 text-red-600 p-4 rounded">Error loading orders: {error.message}</div>
-      ) : orders?.length === 0 ? (
+      {orders?.length === 0 ? (
         <div className="bg-white p-8 rounded border border-gray-200 text-center text-gray-500">
           No orders found yet.
         </div>
