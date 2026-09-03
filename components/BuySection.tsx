@@ -28,22 +28,7 @@ export default function BuySection() {
       { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power3.out", clearProps: "transform" }
     );
 
-    // Parallax on the image
-    gsap.fromTo(
-      ".cinematic-image",
-      { y: -50, scale: 1.05 },
-      { 
-        y: 50, 
-        scale: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".cinematic-container",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true
-        }
-      }
-    );
+
   }, { scope: container });
 
   return (
@@ -95,13 +80,24 @@ export default function BuySection() {
           style={{ background: 'linear-gradient(to bottom, #faecd9, transparent)' }}
         />
 
-        {/* The Image */}
+        {/* Mobile portrait image */}
+        <Image
+          src="/mountain mobile.png"
+          alt="Jeffrey sitting on grass holding his book (un)Fit"
+          fill
+          className="cinematic-image cinematic-image-mobile object-cover object-[center_75%] will-change-transform md:hidden"
+          priority
+          quality={100}
+        />
+
+        {/* Desktop landscape image */}
         <Image
           src="/landscape-hero.png"
           alt="Jeffrey sitting on grass holding his book (un)Fit"
           fill
-          className="cinematic-image object-cover object-[center_60%] will-change-transform"
+          className="cinematic-image cinematic-image-desktop object-cover object-[center_60%] will-change-transform hidden md:block"
           priority
+          quality={100}
         />
       </div>
 
