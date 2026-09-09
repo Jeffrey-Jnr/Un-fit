@@ -48,9 +48,11 @@ export async function POST(req: Request) {
         try {
           const { Resend } = await import('resend');
           const { PurchaseReceipt } = await import('@/emails/PurchaseReceipt');
+          const { AdminNewOrder } = await import('@/emails/AdminNewOrder');
           
           const resend = new Resend(process.env.RESEND_API_KEY);
           
+          // Send to Customer
           await resend.emails.send({
             from: 'Jeffrey Hughes <info@unfitbook.com>',
             to: orderData.customer_email || event.data.customer.email,
@@ -62,7 +64,22 @@ export async function POST(req: Request) {
               quantity: orderData.quantity || 1,
             }),
           });
-          console.log(`Email sent successfully for order ${orderRef}`);
+          
+          // Send Alert to Admin
+          await resend.emails.send({
+            from: 'System <info@unfitbook.com>',
+            to: 'info@unfitbook.com',
+            subject: `🎉 New Order: ${orderRef}`,
+            react: AdminNewOrder({
+              customerName: orderData.customer_name || 'Unknown',
+              customerEmail: orderData.customer_email || event.data.customer.email,
+              orderReference: orderRef,
+              amount: (event.data.amount / 100).toFixed(2),
+              quantity: orderData.quantity || 1,
+            }),
+          });
+          
+          console.log(`Emails sent successfully for order ${orderRef}`);
         } catch (emailError) {
           console.error('Failed to send email:', emailError);
           // Don't fail the webhook just because email failed
