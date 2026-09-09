@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       // Update the order in Supabase to 'paid'
       const { data: orderData, error } = await supabase
         .from('orders')
-        .update({ status: 'paid' })
+        .update({ payment_status: 'paid' })
         .eq('paystack_reference', orderRef)
         .select('*')
         .single();
