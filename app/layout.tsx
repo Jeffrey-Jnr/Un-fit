@@ -23,11 +23,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://www.unfitbook.com'),
-  title: "(un)Fit | Can God really use someone like you?",
-  description: "(Un)Fit | An honest conversation on brokenness, purpose, grace, and a God who uses imperfect people.",
+  title: "(Un)Fit | Jeffrey Frank Hughes Jr.",
+  description: "An honest conversation on brokenness, purpose, grace, and a God who uses imperfect people.",
   openGraph: {
-    title: "(un)Fit | Can God really use someone like you?",
-    description: "(Un)Fit | An honest conversation on brokenness, purpose, grace, and a God who uses imperfect people.",
+    title: "(Un)Fit | Jeffrey Frank Hughes Jr.",
+    description: "An honest conversation on brokenness, purpose, grace, and a God who uses imperfect people.",
     type: "website",
   }
 };
