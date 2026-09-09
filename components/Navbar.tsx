@@ -3,15 +3,19 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+
+const isPrelaunch = process.env.NEXT_PUBLIC_IS_PRELAUNCH === 'true';
 
 const navLinks = [
   { label: "Home", href: "#" },
   { label: "About", href: "#about" },
   { label: "Free Sample", href: "#sample" },
-  { label: "Get Your Copy", href: "#buy", cta: true },
+  { label: isPrelaunch ? "Join the Waitlist" : "Get Your Copy", href: "#buy", cta: true },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -30,12 +34,26 @@ export default function Navbar() {
     };
   }, []);
 
+  if (
+    pathname?.startsWith("/admin") ||
+    pathname?.startsWith("/checkout") ||
+    pathname?.startsWith("/sample")
+  ) {
+    return null;
+  }
+
   const scrollTo = (href: string) => {
     setMobileOpen(false);
     if (href === "#") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
+    
+    // If clicking a CTA to buy, we can open the modal directly
+    if (href === "#buy") {
+      window.dispatchEvent(new Event('openBuyModal'));
+    }
+    
     const id = href.replace("#", "");
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });

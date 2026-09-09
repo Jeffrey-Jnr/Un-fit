@@ -1,10 +1,13 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { X, MapPin, Globe } from "lucide-react";
+import { useRouter } from "next/navigation";
+import NewsletterModal from "@/components/NewsletterModal";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -12,6 +15,17 @@ if (typeof window !== "undefined") {
 
 export default function BuySection() {
   const container = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const isPrelaunch = process.env.NEXT_PUBLIC_IS_PRELAUNCH === 'true';
+
+  useEffect(() => {
+    const handleOpenModal = () => {
+      setIsModalOpen(true);
+    };
+    window.addEventListener('openBuyModal', handleOpenModal);
+    return () => window.removeEventListener('openBuyModal', handleOpenModal);
+  }, []);
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -48,26 +62,40 @@ export default function BuySection() {
 
           {/* Subtext */}
           <p className="text-xl md:text-2xl text-gray-700/80 font-light mt-6 mb-12 opacity-0 will-change-transform">
-            Get your copy of (un)Fit.
+            {isPrelaunch ? "Be the first to get your copy of (un)Fit." : "Get your copy of (un)Fit."}
           </p>
 
           {/* Two Buttons */}
-          {/* Two Buttons */}
           <div className="flex flex-row w-full max-w-[400px] sm:max-w-none mx-auto gap-3 sm:gap-4 justify-center items-center opacity-0 will-change-transform">
-            <a 
-              href="#" 
+            <button 
+              onClick={(e) => {
+                e.preventDefault();
+                setIsModalOpen(true);
+              }} 
               className="flex-1 sm:flex-none px-2 sm:px-10 py-3 sm:py-4 bg-[#ea580c] text-white font-normal md:font-medium rounded-full text-[15px] sm:text-lg hover:bg-orange-700 hover:scale-105 transition-all duration-300 min-w-0 md:min-w-[220px] text-center shadow-lg"
             >
-              Get the Book
-            </a>
-            <a 
-              href="#" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 sm:flex-none px-2 sm:px-10 py-3 sm:py-4 bg-white border border-gray-200 text-[#ea580c] font-normal md:font-medium rounded-full text-[15px] sm:text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 min-w-0 md:min-w-[220px] text-center shadow-lg"
-            >
-              Get the E-Book
-            </a>
+              {isPrelaunch ? "Join the Waitlist" : "Get the Book"}
+            </button>
+            {isPrelaunch ? (
+              <button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsModalOpen(true);
+                }}
+                className="flex-1 sm:flex-none px-2 sm:px-10 py-3 sm:py-4 bg-white border border-gray-200 text-[#ea580c] font-normal md:font-medium rounded-full text-[15px] sm:text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 min-w-0 md:min-w-[220px] text-center shadow-lg"
+              >
+                Get Notified
+              </button>
+            ) : (
+              <a 
+                href="#" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 sm:flex-none px-2 sm:px-10 py-3 sm:py-4 bg-white border border-gray-200 text-[#ea580c] font-normal md:font-medium rounded-full text-[15px] sm:text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 min-w-0 md:min-w-[220px] text-center shadow-lg"
+              >
+                Get the E-Book
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -85,6 +113,7 @@ export default function BuySection() {
           src="/mountain mobile.png"
           alt="Jeffrey sitting on grass holding his book (un)Fit"
           fill
+          sizes="100vw"
           className="cinematic-image cinematic-image-mobile object-cover object-[center_75%] will-change-transform md:hidden"
           priority
           quality={100}
@@ -95,12 +124,70 @@ export default function BuySection() {
           src="/landscape-hero.png"
           alt="Jeffrey sitting on grass holding his book (un)Fit"
           fill
+          sizes="100vw"
           className="cinematic-image cinematic-image-desktop object-cover object-[center_60%] will-change-transform hidden md:block"
           priority
           quality={100}
         />
       </div>
 
+      {isPrelaunch ? (
+        <NewsletterModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+          type="waitlist"
+        />
+      ) : (
+        isModalOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <div 
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+              onClick={() => setIsModalOpen(false)}
+            />
+            <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden transform transition-all p-6 sm:p-8 animate-in fade-in zoom-in duration-300">
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors bg-gray-50 hover:bg-gray-100 rounded-full cursor-pointer"
+              >
+                <X size={20} />
+              </button>
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-serif text-gray-900 mb-2">Choose your location</h3>
+                <p className="text-gray-500 text-sm">Where would you like your paperback delivered?</p>
+              </div>
+              <div className="flex flex-col gap-4">
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/checkout");
+                  }}
+                  className="w-full text-left group flex items-center p-4 border border-gray-200 rounded-xl hover:border-black hover:bg-gray-50 transition-all duration-300 cursor-pointer"
+                >
+                  <div className="w-12 h-12 bg-transparent text-black border border-black rounded-full flex items-center justify-center mr-4 group-hover:bg-black group-hover:text-white transition-colors">
+                    <MapPin size={24} />
+                  </div>
+                  <div className="text-left flex-1">
+                    <div className="font-medium text-gray-900 text-lg">Ghana</div>
+                    <div className="text-gray-500 text-sm">Local delivery & pickup</div>
+                  </div>
+                </button>
+                <a 
+                  href="#amazon-global" 
+                  className="group flex items-center p-4 border border-gray-200 rounded-xl hover:border-black hover:bg-gray-50 transition-all duration-300 cursor-pointer"
+                >
+                  <div className="w-12 h-12 bg-transparent text-black border border-black rounded-full flex items-center justify-center mr-4 group-hover:bg-black group-hover:text-white transition-colors">
+                    <Globe size={24} />
+                  </div>
+                  <div className="text-left flex-1">
+                    <div className="font-medium text-gray-900 text-lg">International</div>
+                    <div className="text-gray-500 text-sm">Order via Amazon</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        )
+      )}
     </section>
   );
 }

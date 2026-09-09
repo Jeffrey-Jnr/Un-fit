@@ -20,7 +20,7 @@ export default function Footer() {
 
       {/* Desktop Grass background behind footer */}
       <div 
-        className="absolute inset-x-0 bottom-0 top-20 w-full z-0 pointer-events-none hidden md:block"
+        className="absolute inset-x-0 bottom-0 -top-32 w-full z-0 pointer-events-none hidden md:block"
         style={{
           backgroundImage: 'url(/grass-only.png)',
           backgroundSize: 'cover',
@@ -50,10 +50,10 @@ export default function Footer() {
               
               <div className="flex flex-col items-stretch gap-3 max-w-[220px]">
                 <a href="#buy" className="py-3 px-6 bg-black text-white text-center rounded-lg font-normal hover:bg-[#ea580c] transition-colors">
-                  Order Physical Copy
+                  {process.env.NEXT_PUBLIC_IS_PRELAUNCH === 'true' ? "Join the Waitlist" : "Order Physical Copy"}
                 </a>
                 <a href="#buy" className="py-3 px-6 bg-black text-white text-center rounded-lg font-normal hover:bg-[#ea580c] transition-colors">
-                  Get E-Book
+                  {process.env.NEXT_PUBLIC_IS_PRELAUNCH === 'true' ? "Get Notified" : "Get E-Book"}
                 </a>
               </div>
             </div>
@@ -92,6 +92,84 @@ export default function Footer() {
             
           </div>
           
+          {/* Newsletter Section */}
+          <div className="mb-12 pt-12 border-t border-gray-100 flex flex-col lg:flex-row justify-between items-center gap-8">
+            <div className="text-center lg:text-left">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Join the Community</h3>
+              <p className="text-gray-600 max-w-md">
+                Get the free sample chapter instantly and join me for honest conversations on brokenness, purpose, and grace.
+              </p>
+            </div>
+            <form 
+              className="flex flex-col w-full lg:w-auto gap-3"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const btn = form.querySelector('button');
+                if (btn) btn.textContent = 'Sending...';
+                
+                try {
+                  const res = await fetch('/api/mailerlite', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      firstName: (form.elements.namedItem('firstName') as HTMLInputElement).value,
+                      lastName: (form.elements.namedItem('lastName') as HTMLInputElement).value,
+                      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+                    })
+                  });
+                  if (res.ok) {
+                    if (btn) {
+                      btn.textContent = 'Check your inbox!';
+                      btn.classList.add('bg-green-600', 'hover:bg-green-700');
+                    }
+                    form.reset();
+                    setTimeout(() => {
+                      if (btn) {
+                        btn.textContent = 'Get Free Sample';
+                        btn.classList.remove('bg-green-600', 'hover:bg-green-700');
+                      }
+                    }, 4000);
+                  }
+                } catch (err) {
+                  if (btn) btn.textContent = 'Error. Try again.';
+                }
+              }}
+            >
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input 
+                  type="text" 
+                  name="firstName"
+                  placeholder="First name" 
+                  className="px-5 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:border-transparent w-full sm:w-1/2 text-gray-900"
+                  required
+                />
+                <input 
+                  type="text" 
+                  name="lastName"
+                  placeholder="Last name" 
+                  className="px-5 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:border-transparent w-full sm:w-1/2 text-gray-900"
+                  required
+                />
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="Email address" 
+                  className="px-5 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:border-transparent w-full sm:w-[260px] text-gray-900"
+                  required
+                />
+                <button 
+                  type="submit"
+                  className="px-8 py-3 bg-[#ea580c] text-white font-medium rounded-xl hover:bg-[#d94c1e] transition-colors shadow-sm whitespace-nowrap flex-grow sm:flex-grow-0"
+                >
+                  Get Free Sample
+                </button>
+              </div>
+            </form>
+          </div>
+
           {/* Bottom Bar */}
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-100 text-sm text-gray-500 gap-4">
             <div className="flex items-center gap-6">

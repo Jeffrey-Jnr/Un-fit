@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function CookieBanner() {
+  const pathname = usePathname();
   const [show, setShow] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -15,6 +17,8 @@ export default function CookieBanner() {
       setTimeout(() => setIsVisible(true), 50);
     }
   }, []);
+
+  if (pathname?.startsWith("/admin")) return null;
 
   const handleClose = (consent: string) => {
     localStorage.setItem("cookie_consent", consent);

@@ -49,6 +49,7 @@ export default function WhyIWroteThis() {
         src="/Canvas%20Background%20Design.png"
         alt="Abstract Canvas Texture"
         fill
+        sizes="100vw"
         className="object-cover object-center opacity-70 z-0"
         priority
       />
