@@ -11,7 +11,7 @@ if (typeof window !== "undefined") {
 }
 
 const content = {
-  p1: "J.F. Hughes Jr. is an author, pastor, entrepreneur, and emerging voice passionate about helping people discover purpose beyond their imperfections. He serves as a Campus Pastor at Empowerment Worship Centre in Ghana and is a son of Gideon Danso, Global Lead Pastor of Empowerment Worship Centre. His ministry is centered on raising people, shaping destinies, and communicating the transforming power of God’s grace.",
+  p1: "J.F. Hughes Jr. is an author, pastor, entrepreneur, speaker, and emerging voice passionate about helping people discover purpose beyond their imperfections. He serves as a Campus Pastor at Empowerment Worship Centre in Ghana and is a son of Gideon Danso, Global Lead Pastor of Empowerment Worship Centre. His ministry is centered on raising people, shaping destinies, and communicating the transforming power of God’s grace.",
   p2: "His debut book, (un)Fit, was born from a deeply personal conviction: that brokenness does not disqualify anyone from being used by God. Through his writing and ministry, Jeffrey challenges people to move beyond the pressure of perfection and embrace a life shaped by purpose, faith, and the faithfulness of God.",
   quote: "His message is simple: you don’t have to be perfect to be purposeful."
 };
