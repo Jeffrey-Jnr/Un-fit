@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
-import { supabase } from '@/lib/supabaseClient';
+import { createClient } from '@supabase/supabase-js';
 
 export async function POST(req: Request) {
   try {
@@ -28,8 +28,14 @@ export async function POST(req: Request) {
     if (event.event === 'charge.success') {
       const orderRef = event.data.reference;
 
+      // Create admin client to bypass RLS
+      const supabaseAdmin = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://dummy.supabase.co',
+        process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'dummy'
+      );
+
       // Update the order in Supabase to 'paid'
-      const { data: orderData, error } = await supabase
+      const { data: orderData, error } = await supabaseAdmin
         .from('orders')
         .update({ payment_status: 'paid' })
         .eq('paystack_reference', orderRef)
