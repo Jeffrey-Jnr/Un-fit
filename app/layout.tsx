@@ -21,13 +21,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://www.unfitbook.com'),
   title: "(un)Fit | Can God really use someone like you?",
   description: "(un)Fit is an honest conversation about brokenness, purpose, and grace, and the kind of God who has never been afraid to use imperfect people.",
   openGraph: {
     title: "(un)Fit | Can God really use someone like you?",
     description: "(un)Fit is an honest conversation about brokenness, purpose, and grace...",
     type: "website",
-    images: [{ url: "/OG IMAGE.png" }]
   }
 };
 
