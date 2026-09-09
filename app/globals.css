@@ -21,6 +21,13 @@ body {
   overflow-x: hidden;
 }
 
+/* Prevent iOS zooming on inputs */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
 /* Custom animation keyframes */
 @keyframes marquee {
   0% { transform: translateX(0%); }
