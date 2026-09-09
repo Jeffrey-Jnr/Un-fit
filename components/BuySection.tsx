@@ -161,9 +161,9 @@ export default function BuySection() {
                     e.preventDefault();
                     router.push("/checkout");
                   }}
-                  className="w-full text-left group flex items-center p-4 border border-gray-200 rounded-xl hover:border-black hover:bg-gray-50 transition-all duration-300 cursor-pointer"
+                  className="w-full text-left group flex items-center p-4 border border-gray-200 rounded-xl hover:border-black active:border-black hover:bg-gray-50 active:bg-gray-50 transition-all duration-300 cursor-pointer"
                 >
-                  <div className="w-12 h-12 bg-transparent text-black border border-black rounded-full flex items-center justify-center mr-4 group-hover:bg-black group-hover:text-white transition-colors">
+                  <div className="w-12 h-12 bg-transparent text-black border border-black rounded-full flex items-center justify-center mr-4 group-hover:bg-black group-hover:text-white group-active:bg-black group-active:text-white transition-colors">
                     <MapPin size={24} />
                   </div>
                   <div className="text-left flex-1">
@@ -173,9 +173,10 @@ export default function BuySection() {
                 </button>
                 <a 
                   href="#amazon-global" 
-                  className="group flex items-center p-4 border border-gray-200 rounded-xl hover:border-black hover:bg-gray-50 transition-all duration-300 cursor-pointer"
+                  onClick={() => setIsModalOpen(false)}
+                  className="group flex items-center p-4 border border-gray-200 rounded-xl hover:border-black active:border-black hover:bg-gray-50 active:bg-gray-50 transition-all duration-300 cursor-pointer"
                 >
-                  <div className="w-12 h-12 bg-transparent text-black border border-black rounded-full flex items-center justify-center mr-4 group-hover:bg-black group-hover:text-white transition-colors">
+                  <div className="w-12 h-12 bg-transparent text-black border border-black rounded-full flex items-center justify-center mr-4 group-hover:bg-black group-hover:text-white group-active:bg-black group-active:text-white transition-colors">
                     <Globe size={24} />
                   </div>
                   <div className="text-left flex-1">
