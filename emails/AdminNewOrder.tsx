@@ -43,7 +43,7 @@ export const AdminNewOrder = ({
             colors: {
               brand: "#F05522",
               dark: "#1A1A1A",
-              offwhite: "#FAF7F3",
+              offwhite: "#ffffff",
             },
             fontFamily: {
               sans: [
@@ -58,7 +58,7 @@ export const AdminNewOrder = ({
         },
       }}
     >
-      <Body className="bg-[#FAF7F3] font-sans m-auto px-2">
+      <Body className="bg-[#ffffff] font-sans m-auto px-2">
         <Container className="bg-white mx-auto mt-[40px] mb-[40px] max-w-[600px] shadow-sm border border-gray-100">
           
           <Section className="px-10 py-10">
