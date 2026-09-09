@@ -48,8 +48,15 @@ export default function AdminDashboard() {
   };
 
   useEffect(() => {
-    async function fetchOrders() {
+    async function checkAuthAndFetch() {
       const supabase = createClient();
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        router.push('/admin/login');
+        return;
+      }
+
       const { data, error } = await supabase
         .from('orders')
         .select('*')
@@ -72,7 +79,7 @@ export default function AdminDashboard() {
       }
     }
     
-    fetchOrders();
+    checkAuthAndFetch();
   }, []);
 
   const handleStatusChange = async (id: string, newStatus: string) => {
