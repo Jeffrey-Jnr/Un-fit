@@ -51,6 +51,7 @@ export default function AboutAuthor() {
             src="/Jeffrey.jpg" 
             alt="Jeffrey Hughes Jr." 
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-bottom md:object-center grayscale contrast-125 brightness-90"
           />
           

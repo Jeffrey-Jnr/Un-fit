@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
-import { LogIn, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { Lock, Eye, EyeOff } from 'lucide-react';
 
-export default function LoginPage() {
-  const [email, setEmail] = useState('');
+export default function UpdatePasswordPage() {
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
@@ -15,46 +15,39 @@ export default function LoginPage() {
   const router = useRouter();
   const supabase = createClient();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleUpdatePassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError('');
     setMessage('');
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
+    }
+
+    setLoading(true);
+
+    // This is the magic command. Since the user clicked the email link,
+    // they are temporarily authenticated, so Supabase knows who is updating their password!
+    const { error } = await supabase.auth.updateUser({
+      password: password
     });
 
     if (error) {
       setError(error.message);
       setLoading(false);
     } else {
-      router.push('/admin');
-      router.refresh();
+      setMessage('Password successfully updated! Redirecting to dashboard...');
+      setTimeout(() => {
+        router.push('/admin');
+        router.refresh();
+      }, 2000);
     }
-  };
-
-  const handleResetPassword = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (!email) {
-      setError('Please enter your email address first to reset your password.');
-      return;
-    }
-    setLoading(true);
-    setError('');
-    setMessage('');
-    
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/admin/update-password`,
-    });
-    
-    if (error) {
-      setError(error.message);
-    } else {
-      setMessage('Password reset link sent! Please check your email.');
-    }
-    setLoading(false);
   };
 
   return (
@@ -65,14 +58,14 @@ export default function LoginPage() {
         
         {/* Icon */}
         <div className="w-12 h-12 bg-white/80 backdrop-blur-md rounded-2xl shadow-sm border border-white/60 flex items-center justify-center mx-auto mb-6">
-          <LogIn size={20} className="text-gray-900" />
+          <Lock size={20} className="text-gray-900" />
         </div>
 
         {/* Headers */}
         <div className="text-center mb-8">
-          <h2 className="text-[22px] font-bold text-gray-900 mb-2 tracking-tight">Sign in with email</h2>
+          <h2 className="text-[22px] font-bold text-gray-900 mb-2 tracking-tight">Update Password</h2>
           <p className="text-sm text-gray-700 font-medium leading-relaxed px-2">
-            Access the (Un)Fit admin dashboard to manage your orders securely.
+            Please enter your new password below.
           </p>
         </div>
         
@@ -88,32 +81,17 @@ export default function LoginPage() {
           </div>
         )}
         
-        <form onSubmit={handleLogin} className="space-y-4">
+        <form onSubmit={handleUpdatePassword} className="space-y-4">
           <div className="space-y-3">
-            {/* Email Input */}
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                <Mail size={18} className="text-gray-600" />
-              </div>
-              <input 
-                type="email" 
-                required 
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-4 py-3.5 bg-white/50 border border-white/50 rounded-xl text-sm text-gray-900 focus:bg-white/80 focus:border-white/80 focus:ring-2 focus:ring-gray-900/10 transition-all placeholder:text-gray-500 font-medium"
-              />
-            </div>
-
-            {/* Password Input */}
+            {/* New Password Input */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
                 <Lock size={18} className="text-gray-600" />
               </div>
               <input 
                 type={showPassword ? "text" : "password"}
-                required={!message} // Don't require password if they are just resetting
-                placeholder="Password"
+                required 
+                placeholder="New Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full pl-10 pr-10 py-3.5 bg-white/50 border border-white/50 rounded-xl text-sm text-gray-900 focus:bg-white/80 focus:border-white/80 focus:ring-2 focus:ring-gray-900/10 transition-all placeholder:text-gray-500 font-medium"
@@ -126,26 +104,30 @@ export default function LoginPage() {
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
-          </div>
 
-          {/* Forgot Password */}
-          <div className="flex justify-end pt-1 pb-2">
-            <button 
-              onClick={handleResetPassword}
-              type="button"
-              className="text-xs font-semibold text-gray-700 hover:text-gray-900 transition-colors"
-            >
-              Forgot password?
-            </button>
+            {/* Confirm Password Input */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <Lock size={18} className="text-gray-600" />
+              </div>
+              <input 
+                type={showPassword ? "text" : "password"}
+                required 
+                placeholder="Confirm New Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full pl-10 pr-10 py-3.5 bg-white/50 border border-white/50 rounded-xl text-sm text-gray-900 focus:bg-white/80 focus:border-white/80 focus:ring-2 focus:ring-gray-900/10 transition-all placeholder:text-gray-500 font-medium"
+              />
+            </div>
           </div>
 
           {/* Submit Button */}
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full py-3.5 bg-orange-600 text-white rounded-xl text-sm font-semibold shadow-md hover:bg-orange-700 hover:shadow-lg transition-all hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
+            className="w-full py-3.5 bg-orange-600 text-white rounded-xl text-sm font-semibold shadow-md hover:bg-orange-700 hover:shadow-lg transition-all hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0 mt-6"
           >
-            {loading ? 'Signing in...' : 'Get Started'}
+            {loading ? 'Updating...' : 'Save New Password'}
           </button>
         </form>
       </div>

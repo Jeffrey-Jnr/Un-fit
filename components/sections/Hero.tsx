@@ -174,7 +174,7 @@ export default function Hero() {
           <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif-hero text-[var(--color-dark)] tracking-tight mb-2 leading-[1.15]">
             {/* Desktop Layout */}
             <div className="hero-desktop hidden md:block">
-              <div className="overflow-hidden py-1 flex justify-center">
+              <div className="overflow-hidden pt-1 pb-6 -mb-5 flex justify-center">
                 <span className="flex flex-wrap justify-center gap-x-[0.25em]">
                   {["Can", "God", "really", "use"].map((word, i) => (
                     <span key={`desk-w1-${i}`} className="gsap-word inline-block invisible opacity-0">{word}</span>
@@ -208,7 +208,7 @@ export default function Hero() {
 
             {/* Mobile Layout */}
             <div className="hero-mobile flex md:hidden flex-col items-center w-full">
-              <div className="overflow-hidden py-1 flex justify-center w-full">
+              <div className="overflow-hidden pt-1 pb-6 -mb-5 flex justify-center w-full">
                 <span className="flex justify-center gap-x-[0.25em]">
                   {["Can", "God", "really"].map((word, i) => (
                     <span key={`mob-w1-${i}`} className="gsap-word inline-block invisible opacity-0">{word}</span>
@@ -216,7 +216,7 @@ export default function Hero() {
                 </span>
               </div>
 
-              <div className="overflow-hidden py-1 flex justify-center w-full">
+              <div className="overflow-hidden pt-1 pb-6 -mb-5 flex justify-center w-full">
                 <span className="flex justify-center gap-x-[0.25em]">
                   {["use", "someone", "like"].map((word, i) => (
                     <span key={`mob-w2-${i}`} className="gsap-word inline-block invisible opacity-0">{word}</span>
@@ -255,17 +255,17 @@ export default function Hero() {
           
           {/* Left Book Clip */}
           <div className="gsap-book-left absolute inset-0 z-10 invisible opacity-0" style={{ clipPath: 'inset(0 60% 0 0)' }}>
-            <Image src="/three versions.png" alt="" fill className="object-contain" priority />
+            <Image src="/three versions.png" alt="" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority />
           </div>
 
           {/* Right Book Clip */}
           <div className="gsap-book-right absolute inset-0 z-10 invisible opacity-0" style={{ clipPath: 'inset(0 0 0 60%)' }}>
-            <Image src="/three versions.png" alt="" fill className="object-contain" priority />
+            <Image src="/three versions.png" alt="" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority />
           </div>
 
           {/* Center Book Clip */}
           <div className="gsap-book-center absolute inset-0 z-20 invisible opacity-0" style={{ clipPath: 'inset(0 25% 0 25%)' }}>
-            <Image src="/three versions.png" alt="(un)Fit Book Cover" fill className="object-contain" priority />
+            <Image src="/three versions.png" alt="(un)Fit Book Cover" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority />
           </div>
 
         </div>

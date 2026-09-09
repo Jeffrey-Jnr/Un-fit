@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "(un)Fit | Can God really use someone like you?",
     description: "(un)Fit is an honest conversation about brokenness, purpose, and grace...",
     type: "website",
-    // images: [{ url: "/cover.jpg" }]
+    images: [{ url: "/OG IMAGE.png" }]
   }
 };
 
