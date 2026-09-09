@@ -3,6 +3,7 @@ import { Inter, Cormorant_Garamond, Lora } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import CookieBanner from "@/components/CookieBanner";
+import { Analytics } from "@vercel/analytics/react";
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ["latin"], 
@@ -98,6 +99,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <CookieBanner />
+        <Analytics />
       </body>
     </html>
   );
