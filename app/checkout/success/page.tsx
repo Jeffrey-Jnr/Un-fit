@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Check, ArrowLeft } from "lucide-react";
+import { Check } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 

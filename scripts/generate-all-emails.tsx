@@ -1,10 +1,10 @@
 import { render } from '@react-email/render';
-import { NewsletterWelcome } from './emails/NewsletterWelcome';
-import { WaitlistWelcome } from './emails/WaitlistWelcome';
-import { OrderStatusUpdate } from './emails/OrderStatusUpdate';
-import { ReviewRequest } from './emails/ReviewRequest';
-import { AdminNewOrder } from './emails/AdminNewOrder';
-import { PurchaseReceipt } from './emails/PurchaseReceipt';
+import { NewsletterWelcome } from '@/emails/NewsletterWelcome';
+import { WaitlistWelcome } from '@/emails/WaitlistWelcome';
+import { OrderStatusUpdate } from '@/emails/OrderStatusUpdate';
+import { ReviewRequest } from '@/emails/ReviewRequest';
+import { AdminNewOrder } from '@/emails/AdminNewOrder';
+import { PurchaseReceipt } from '@/emails/PurchaseReceipt';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as React from 'react';

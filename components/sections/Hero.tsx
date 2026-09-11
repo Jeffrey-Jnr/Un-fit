@@ -255,17 +255,17 @@ export default function Hero() {
           
           {/* Left Book Clip */}
           <div className="gsap-book-left absolute inset-0 z-10 invisible opacity-0" style={{ clipPath: 'inset(0 60% 0 0)' }}>
-            <Image src="/three versions.png" alt="" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority />
+            <Image src="/three versions.png" alt="" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority unoptimized />
           </div>
 
           {/* Right Book Clip */}
           <div className="gsap-book-right absolute inset-0 z-10 invisible opacity-0" style={{ clipPath: 'inset(0 0 0 60%)' }}>
-            <Image src="/three versions.png" alt="" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority />
+            <Image src="/three versions.png" alt="" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority unoptimized />
           </div>
 
           {/* Center Book Clip */}
           <div className="gsap-book-center absolute inset-0 z-20 invisible opacity-0" style={{ clipPath: 'inset(0 25% 0 25%)' }}>
-            <Image src="/three versions.png" alt="(un)Fit Book Cover" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority />
+            <Image src="/three versions.png" alt="(un)Fit Book Cover" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority unoptimized />
           </div>
 
         </div>

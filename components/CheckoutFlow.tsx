@@ -1,27 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import { ChevronDown, ChevronUp, ShieldCheck, Truck, Award, ArrowRight } from "lucide-react";
+import { ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Turnstile } from '@marsidev/react-turnstile';
-import { supabase } from "@/lib/supabaseClient";
+import { createClient } from "@/utils/supabase/client";
+import { REGIONS, BASE_BOOK_PRICE } from "@/components/checkout/constants";
+import OrderSummaryCard from "@/components/checkout/OrderSummaryCard";
 
 const PaystackButton = dynamic(() => import("./PaystackButton"), { ssr: false });
-
-const REGIONS = [
-  { name: "Greater Accra", tier: 1, cost: 30, type: "door-to-door" },
-  { name: "Ashanti", tier: 2, cost: 45, type: "station" },
-  { name: "Central", tier: 2, cost: 45, type: "station" },
-  { name: "Eastern", tier: 2, cost: 45, type: "station" },
-  { name: "Western", tier: 2, cost: 45, type: "station" },
-  { name: "Volta", tier: 2, cost: 45, type: "station" },
-  { name: "Northern", tier: 3, cost: 65, type: "station" },
-  { name: "Upper East", tier: 3, cost: 65, type: "station" },
-  { name: "Upper West", tier: 3, cost: 65, type: "station" },
-  { name: "Bono", tier: 3, cost: 65, type: "station" },
-  { name: "Free Pick-up", tier: 0, cost: 0, type: "pickup" },
-];
 
 interface CheckoutFlowProps {
   onBack?: () => void;
@@ -46,7 +33,7 @@ export default function CheckoutFlow({ onBack, onSuccess }: CheckoutFlowProps) {
   });
 
   const selectedRegion = REGIONS.find((r) => r.name === formData.region);
-  const baseBookPrice = 180;
+  const baseBookPrice = BASE_BOOK_PRICE;
   const bookTotal = baseBookPrice * quantity;
   const deliveryCost = selectedRegion ? selectedRegion.cost : 0;
   const total = bookTotal + deliveryCost;
@@ -84,6 +71,7 @@ export default function CheckoutFlow({ onBack, onSuccess }: CheckoutFlowProps) {
         const newRef = `ORD_${new Date().getTime()}`;
         setOrderRef(newRef);
 
+        const supabase = createClient();
         const { error } = await supabase
           .from('orders')
           .insert([
@@ -158,35 +146,15 @@ export default function CheckoutFlow({ onBack, onSuccess }: CheckoutFlowProps) {
         
         {isMobileSummaryExpanded && (
           <div className="p-4 sm:px-6 pt-0 border-t border-gray-200">
-            <div className="flex items-start py-4 border-b border-gray-100">
-               <div className="w-20 h-28 shrink-0 overflow-hidden relative flex items-center justify-center">
-                 <Image src="/paperback.jpg" alt="(Un)Fit Paperback" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-center mix-blend-multiply" />
-               </div>
-               <div className="ml-4 flex-1">
-                 <h4 className="font-medium text-gray-900">(Un)Fit</h4>
-                 <p className="text-sm text-gray-500 mt-0.5">Paperback</p>
-                 <div className="flex items-center mt-2 border border-gray-200 rounded-md w-fit bg-white">
-                   <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-2 py-0.5 text-gray-500 hover:text-black transition-colors">-</button>
-                   <span className="px-3 py-0.5 text-sm font-medium border-x border-gray-200">{quantity}</span>
-                   <button onClick={() => setQuantity(quantity + 1)} className="px-2 py-0.5 text-gray-500 hover:text-black transition-colors">+</button>
-                 </div>
-               </div>
-               <div className="font-medium text-gray-900">GH₵ {bookTotal.toFixed(2)}</div>
-            </div>
-            <div className="space-y-3 py-4 text-sm">
-              <div className="flex justify-between text-gray-600">
-                <span>Subtotal</span>
-                <span className="font-medium text-gray-900">GH₵ {bookTotal.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between text-gray-600">
-                <span>Shipping</span>
-                <span className="font-medium text-gray-900">{selectedRegion ? `GH₵ ${deliveryCost.toFixed(2)}` : "--"}</span>
-              </div>
-            </div>
-            <div className="flex justify-between pt-4 border-t border-gray-200 text-lg font-medium">
-              <span>Total</span>
-              <span className="text-orange-600">GH₵ {total.toFixed(2)}</span>
-            </div>
+            <OrderSummaryCard
+              quantity={quantity}
+              setQuantity={setQuantity}
+              bookTotal={bookTotal}
+              deliveryCost={deliveryCost}
+              total={total}
+              hasSelectedRegion={!!selectedRegion}
+              variant="mobile"
+            />
           </div>
         )}
       </div>
@@ -408,57 +376,15 @@ export default function CheckoutFlow({ onBack, onSuccess }: CheckoutFlowProps) {
           
           {/* Right Column (Order Summary - Desktop) */}
           <div className="hidden lg:block lg:col-span-5 relative">
-            <div className="sticky top-8 bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-              <h2 className="text-xl font-medium text-gray-900 mb-6">Order Summary</h2>
-              
-              <div className="flex items-start pb-6 border-b border-gray-100">
-                <div className="w-28 h-36 overflow-hidden relative flex items-center justify-center">
-                  <Image src="/paperback.jpg" alt="(Un)Fit Paperback" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-center mix-blend-multiply" />
-                </div>
-                <div className="ml-4 flex-1">
-                  <h4 className="font-medium text-gray-900 text-lg">(un)Fit</h4>
-                  <p className="text-sm text-gray-500 mt-1">Paperback</p>
-                  <div className="flex items-center mt-3 border border-gray-200 rounded-md w-fit bg-white">
-                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-3 py-1 text-gray-500 hover:text-black transition-colors">-</button>
-                    <span className="px-4 py-1 text-sm font-medium border-x border-gray-200">{quantity}</span>
-                    <button onClick={() => setQuantity(quantity + 1)} className="px-3 py-1 text-gray-500 hover:text-black transition-colors">+</button>
-                  </div>
-                </div>
-                <div className="font-medium text-gray-900 text-lg">GH₵ {bookTotal.toFixed(2)}</div>
-              </div>
-
-              <div className="space-y-4 py-6 text-sm">
-                <div className="flex justify-between text-gray-600">
-                  <span>Subtotal</span>
-                  <span className="font-medium text-gray-900">GH₵ {bookTotal.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between text-gray-600">
-                  <span>Shipping</span>
-                  <span className="font-medium text-gray-900">{selectedRegion ? `GH₵ ${deliveryCost.toFixed(2)}` : "--"}</span>
-                </div>
-              </div>
-              
-              <div className="flex justify-between pt-6 border-t border-gray-200 text-xl font-medium">
-                <span>Total</span>
-                <span className="text-orange-600">GH₵ {total.toFixed(2)}</span>
-              </div>
-
-              <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
-                <div className="flex flex-col items-center text-center gap-1.5">
-                  <ShieldCheck size={24} className="text-orange-500" />
-                  <span className="text-xs text-gray-500 font-medium">Secure<br/>Checkout</span>
-                </div>
-                <div className="flex flex-col items-center text-center gap-1.5">
-                  <Truck size={24} className="text-orange-500" />
-                  <span className="text-xs text-gray-500 font-medium">Reliable<br/>Shipping</span>
-                </div>
-                <div className="flex flex-col items-center text-center gap-1.5">
-                  <Award size={24} className="text-orange-500" />
-                  <span className="text-xs text-gray-500 font-medium">Premium<br/>Quality</span>
-                </div>
-              </div>
-
-            </div>
+            <OrderSummaryCard
+              quantity={quantity}
+              setQuantity={setQuantity}
+              bookTotal={bookTotal}
+              deliveryCost={deliveryCost}
+              total={total}
+              hasSelectedRegion={!!selectedRegion}
+              variant="desktop"
+            />
           </div>
 
         </div>
