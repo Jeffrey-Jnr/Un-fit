@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react";
-import { ArrowRight, Play } from "lucide-react";
+import { Play } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

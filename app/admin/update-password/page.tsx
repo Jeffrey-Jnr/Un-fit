@@ -51,7 +51,7 @@ export default function UpdatePasswordPage() {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4 bg-cover bg-center bg-[url('/mountain%20mobile.png')] sm:bg-[url('/landscape-hero.png')]">
+    <div className="min-h-screen w-full flex items-center justify-center p-4 bg-cover bg-center bg-[url('/mountain-mobile.png')] sm:bg-[url('/landscape-hero.png')]">
       <div className="absolute inset-0 bg-black/5"></div>
       
       <div className="relative w-full max-w-[400px] bg-white/40 backdrop-blur-xl rounded-[28px] p-8 sm:p-10 shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-white/50">

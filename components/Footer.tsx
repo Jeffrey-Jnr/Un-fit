@@ -1,7 +1,41 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
+
 export default function Footer() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/mailerlite", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setTimeout(() => {
+          setStatus("idle");
+        }, 4000);
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <div className="relative w-full">
       {/* Mobile Grass background behind footer */}
@@ -102,45 +136,15 @@ export default function Footer() {
             </div>
             <form 
               className="flex flex-col w-full lg:w-auto gap-3"
-              onSubmit={async (e) => {
-                e.preventDefault();
-                const form = e.currentTarget;
-                const btn = form.querySelector('button');
-                if (btn) btn.textContent = 'Sending...';
-                
-                try {
-                  const res = await fetch('/api/mailerlite', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                      firstName: (form.elements.namedItem('firstName') as HTMLInputElement).value,
-                      lastName: (form.elements.namedItem('lastName') as HTMLInputElement).value,
-                      email: (form.elements.namedItem('email') as HTMLInputElement).value,
-                    })
-                  });
-                  if (res.ok) {
-                    if (btn) {
-                      btn.textContent = 'Check your inbox!';
-                      btn.classList.add('bg-green-600', 'hover:bg-green-700');
-                    }
-                    form.reset();
-                    setTimeout(() => {
-                      if (btn) {
-                        btn.textContent = 'Get Free Sample';
-                        btn.classList.remove('bg-green-600', 'hover:bg-green-700');
-                      }
-                    }, 4000);
-                  }
-                } catch (err) {
-                  if (btn) btn.textContent = 'Error. Try again.';
-                }
-              }}
+              onSubmit={handleSubmit}
             >
               <div className="flex flex-col sm:flex-row gap-3">
                 <input 
                   type="text" 
                   name="firstName"
                   placeholder="First name" 
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   className="px-5 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:border-transparent w-full sm:w-1/2 text-gray-900"
                   required
                 />
@@ -148,6 +152,8 @@ export default function Footer() {
                   type="text" 
                   name="lastName"
                   placeholder="Last name" 
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   className="px-5 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:border-transparent w-full sm:w-1/2 text-gray-900"
                   required
                 />
@@ -157,14 +163,24 @@ export default function Footer() {
                   type="email" 
                   name="email"
                   placeholder="Email address" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="px-5 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#ea580c] focus:border-transparent w-full sm:w-[260px] text-gray-900"
                   required
                 />
                 <button 
                   type="submit"
-                  className="px-8 py-3 bg-[#ea580c] text-white font-medium rounded-xl hover:bg-[#d94c1e] transition-colors shadow-sm whitespace-nowrap flex-grow sm:flex-grow-0"
+                  disabled={status === "loading"}
+                  className={`px-8 py-3 text-white font-medium rounded-xl transition-colors shadow-sm whitespace-nowrap flex-grow sm:flex-grow-0 disabled:opacity-70 ${
+                    status === "success" 
+                      ? "bg-green-600 hover:bg-green-700" 
+                      : "bg-[#ea580c] hover:bg-[#d94c1e]"
+                  }`}
                 >
-                  Get Free Sample
+                  {status === "loading" && "Sending..."}
+                  {status === "success" && "Check your inbox!"}
+                  {status === "error" && "Error. Try again."}
+                  {status === "idle" && "Get Free Sample"}
                 </button>
               </div>
             </form>

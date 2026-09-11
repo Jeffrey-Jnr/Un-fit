@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
+
 import { X, MapPin, Globe } from "lucide-react";
 import { useRouter } from "next/navigation";
 import NewsletterModal from "@/components/NewsletterModal";
@@ -44,6 +44,8 @@ export default function BuySection() {
 
 
   }, { scope: container });
+
+
 
   return (
     <section id="buy" ref={container} className="relative z-10">
@@ -108,27 +110,18 @@ export default function BuySection() {
           style={{ background: 'linear-gradient(to bottom, #faecd9, transparent)' }}
         />
 
-        {/* Mobile portrait image */}
-        <Image
-          src="/mountain mobile.png"
-          alt="Jeffrey sitting on grass holding his book (un)Fit"
-          fill
-          sizes="100vw"
-          className="cinematic-image cinematic-image-mobile object-cover object-[center_75%] will-change-transform md:hidden"
-          priority
-          quality={100}
-        />
-
-        {/* Desktop landscape image */}
-        <Image
-          src="/landscape-hero.png"
-          alt="Jeffrey sitting on grass holding his book (un)Fit"
-          fill
-          sizes="100vw"
-          className="cinematic-image cinematic-image-desktop object-cover object-[center_60%] will-change-transform hidden md:block"
-          priority
-          quality={100}
-        />
+        {/* Responsive cinematic image with full raw PNG fidelity */}
+        <picture>
+          <source media="(min-width: 768px)" srcSet="/landscape-hero.png" />
+          <source media="(max-width: 767px)" srcSet="/mountain-mobile.png" />
+          <img
+            src="/landscape-hero.png"
+            alt="Jeffrey sitting on grass holding his book (un)Fit"
+            className="cinematic-image absolute inset-0 w-full h-full object-cover object-[center_75%] md:object-[center_60%]"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
       </div>
 
       {isPrelaunch ? (
