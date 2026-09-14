@@ -70,7 +70,7 @@ function ReceiptTicket() {
           <div className="flex justify-center items-center gap-2 mb-8">
             <span className="text-sm text-gray-400 font-medium">Powered by</span>
             <img 
-              src="/paystack-logo-png_seeklogo-409509.png" 
+              src="/images/branding/paystack-logo.png" 
               alt="Paystack" 
               className="h-5 w-auto object-contain opacity-90 relative top-[-1px]" 
             />

@@ -195,7 +195,7 @@ export default function Hero() {
                   </span>
                   
                   <Image 
-                    src="/question mark.png" 
+                    src="/images/misc/question-mark.png" 
                     alt="?" 
                     width={800} 
                     height={800}
@@ -234,7 +234,7 @@ export default function Hero() {
                   </span>
                   
                   <Image 
-                    src="/question mark.png" 
+                    src="/images/misc/question-mark.png" 
                     alt="?" 
                     width={800} 
                     height={800}
@@ -255,17 +255,17 @@ export default function Hero() {
           
           {/* Left Book Clip */}
           <div className="gsap-book-left absolute inset-0 z-10 invisible opacity-0" style={{ clipPath: 'inset(0 60% 0 0)' }}>
-            <Image src="/three versions.png" alt="" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority unoptimized />
+            <Image src="/images/books/three-versions.png" alt="" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority unoptimized />
           </div>
 
           {/* Right Book Clip */}
           <div className="gsap-book-right absolute inset-0 z-10 invisible opacity-0" style={{ clipPath: 'inset(0 0 0 60%)' }}>
-            <Image src="/three versions.png" alt="" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority unoptimized />
+            <Image src="/images/books/three-versions.png" alt="" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority unoptimized />
           </div>
 
           {/* Center Book Clip */}
           <div className="gsap-book-center absolute inset-0 z-20 invisible opacity-0" style={{ clipPath: 'inset(0 25% 0 25%)' }}>
-            <Image src="/three versions.png" alt="(un)Fit Book Cover" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority unoptimized />
+            <Image src="/images/books/three-versions.png" alt="(un)Fit Book Cover" fill sizes="(max-width: 900px) 100vw, 900px" className="object-contain" priority unoptimized />
           </div>
 
         </div>
@@ -290,18 +290,18 @@ export default function Hero() {
           
           <div className="flex flex-row items-center justify-between sm:justify-center gap-2 sm:gap-8 md:gap-12 mt-8 sm:mt-10 w-full max-w-[420px] sm:max-w-none mx-auto grayscale hover:grayscale-0 transition-all duration-500 opacity-80 invisible opacity-0 px-2 sm:px-0">
             <Image 
-              src="/unfit-lg.png" 
+              src="/images/branding/unfit-logo.png" 
               alt="(un)Fit" 
               width={800} height={400}
               className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-36 lg:h-48" 
             />
             <img 
-              src="/amazon.svg" 
+              src="/images/branding/amazon.svg" 
               alt="Amazon" 
               className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-36 lg:h-48" 
             />
             <Image 
-              src="/sellar-lg.png" 
+              src="/images/branding/sellar-logo.png" 
               alt="Selar" 
               width={800} height={400}
               className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-36 lg:h-48" 

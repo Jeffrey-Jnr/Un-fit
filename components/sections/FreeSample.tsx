@@ -46,7 +46,7 @@ export default function FreeSample() {
           <div className="sample-image order-2 lg:order-1 w-full flex flex-col items-center justify-center -mt-8 md:mt-0 opacity-0">
              <div className="relative h-[280px] sm:h-[360px] md:h-[440px] lg:h-[540px] w-full flex items-center justify-center mb-8 lg:mb-0">
                <Image 
-                 src="/books-trimmed.png" 
+                 src="/images/books/books-trimmed.png" 
                  alt="UnFit Books" 
                  fill
                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"

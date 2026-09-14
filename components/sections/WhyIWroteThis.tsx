@@ -46,7 +46,7 @@ export default function WhyIWroteThis() {
       
       {/* Abstract Background Image */}
       <Image
-        src="/Canvas%20Background%20Design.png"
+        src="/images/backgrounds/canvas-background.png"
         alt="Abstract Canvas Texture"
         fill
         sizes="100vw"

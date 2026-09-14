@@ -112,10 +112,10 @@ export default function BuySection() {
 
         {/* Responsive cinematic image with full raw PNG fidelity */}
         <picture>
-          <source media="(min-width: 768px)" srcSet="/landscape-hero.png" />
-          <source media="(max-width: 767px)" srcSet="/mountain-mobile.png" />
+          <source media="(min-width: 768px)" srcSet="/images/backgrounds/landscape-hero.png" />
+          <source media="(max-width: 767px)" srcSet="/images/backgrounds/mountain-mobile.png" />
           <img
-            src="/landscape-hero.png"
+            src="/images/backgrounds/landscape-hero.png"
             alt="Jeffrey sitting on grass holding his book (un)Fit"
             className="cinematic-image absolute inset-0 w-full h-full object-cover object-[center_75%] md:object-[center_60%]"
             loading="eager"

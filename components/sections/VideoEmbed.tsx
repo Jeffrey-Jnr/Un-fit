@@ -165,7 +165,7 @@ export default function VideoEmbed() {
               onPlay={() => setHasPlayed(true)}
               playbackId="kADoFyO7V00ycOK01Ea800EaR3bBnCLhyQw2VuazDgi1DM"
               metadata={{ video_title: "A personal invitation from Jeffrey" }}
-              poster="/Thumbnail.png"
+              poster="/images/misc/thumbnail.png"
               accentColor="#ea580c"
               style={{ 
                 '--media-object-fit': 'cover',

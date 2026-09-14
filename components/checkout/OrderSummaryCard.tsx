@@ -36,7 +36,7 @@ export default function OrderSummaryCard({
           } shrink-0 overflow-hidden relative flex items-center justify-center`}
         >
           <Image
-            src="/paperback.jpg"
+            src="/images/books/paperback.jpg"
             alt="(Un)Fit Paperback"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
