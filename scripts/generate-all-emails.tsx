@@ -43,11 +43,16 @@ async function generate() {
     }
   ];
 
+  const previewsDir = path.join(publicDir, 'previews');
+  if (!fs.existsSync(previewsDir)) {
+    fs.mkdirSync(previewsDir, { recursive: true });
+  }
+
   for (const template of templates) {
     const html = await render(template.component);
-    const outputPath = path.join(publicDir, `preview-${template.name}.html`);
+    const outputPath = path.join(previewsDir, `preview-${template.name}.html`);
     fs.writeFileSync(outputPath, html);
-    console.log(`Generated ${template.name} at public/preview-${template.name}.html`);
+    console.log(`Generated ${template.name} at public/previews/preview-${template.name}.html`);
   }
 }
 

@@ -14,9 +14,9 @@ async function generate() {
     />
   );
   
-  const outputPath = path.join(process.cwd(), 'public', 'email-preview.html');
+  const outputPath = path.join(process.cwd(), 'public', 'previews', 'email-preview.html');
   fs.writeFileSync(outputPath, html);
-  console.log('Email HTML generated successfully at public/email-preview.html');
+  console.log('Email HTML generated successfully at public/previews/email-preview.html');
 }
 
 generate();

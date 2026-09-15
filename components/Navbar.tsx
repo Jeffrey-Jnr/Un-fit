@@ -91,7 +91,7 @@ export default function Navbar() {
         >
           <div className="w-full h-full relative" style={{ clipPath: 'inset(0 100% 0 0)' }} id="logo-mask">
             <Image
-              src="/unfit-lg.png"
+              src="/images/branding/unfit-logo.png"
               alt="(Un)Fit Logo"
               width={300}
               height={300}

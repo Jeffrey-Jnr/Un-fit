@@ -59,7 +59,7 @@ export const ReviewRequest = ({
           {/* Header Banner */}
           <Section className="bg-white w-full pt-10 px-10">
             <Img
-              src={`${baseUrl}/Un-fit.png`}
+              src={`${baseUrl}/images/branding/unfit-email-logo.png`}
               width="150"
               alt="(Un)Fit Logo"
               className="block ml-[-16px]"

@@ -178,7 +178,7 @@ export default function AdminDashboard() {
           </div>
           <div className={`flex items-center gap-3 pt-4 border-t border-gray-100 ${isSidebarCollapsed ? "lg:justify-center lg:px-0 px-2" : "px-2"}`}>
             <div className="w-10 h-10 rounded-full bg-gray-200 border-2 border-white shadow-sm overflow-hidden flex-shrink-0 relative">
-              <Image src="/Jeffrey.jpg" alt="Jeffrey Hughes" fill className="object-cover no-invert" />
+              <Image src="/images/author/jeffrey.jpg" alt="Jeffrey Hughes" fill className="object-cover no-invert" />
             </div>
             <div className={`overflow-hidden ${isSidebarCollapsed ? "lg:hidden block" : "block"}`}>
               <p className="text-sm font-semibold truncate">Jeffrey Hughes</p>

@@ -42,7 +42,7 @@ export default function Footer() {
       <div 
         className="absolute inset-x-0 bottom-0 -top-10 w-full z-0 pointer-events-none md:hidden"
         style={{
-          backgroundImage: 'url(/grass-mobile.png)',
+          backgroundImage: 'url(/images/backgrounds/grass-mobile.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'top center',
           transform: 'translateZ(0)',
@@ -56,7 +56,7 @@ export default function Footer() {
       <div 
         className="absolute inset-x-0 bottom-0 -top-32 w-full z-0 pointer-events-none hidden md:block"
         style={{
-          backgroundImage: 'url(/grass-only.png)',
+          backgroundImage: 'url(/images/backgrounds/grass-only.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'top center',
           transform: 'translateZ(0)',
@@ -73,7 +73,7 @@ export default function Footer() {
             {/* Left Column */}
             <div className="col-span-1 md:col-span-1 -mt-6">
               <Image 
-                src="/unfit-lg.png" 
+                src="/images/branding/unfit-logo.png" 
                 alt="(un)Fit Logo" 
                 width={800} height={400}
                 className="h-24 w-auto -mt-4 -mb-7 object-contain brightness-0 relative z-10"
@@ -190,16 +190,16 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-100 text-sm text-gray-500 gap-4">
             <div className="flex items-center gap-6">
               <a href="https://www.instagram.com/jeffreyhughes.jr/" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform block">
-                <img src="/instagram.svg" alt="Instagram" className="w-8 h-8 object-contain scale-125" style={{ width: 32, height: 32 }} />
+                <img src="/images/icons/instagram.svg" alt="Instagram" className="w-8 h-8 object-contain scale-125" style={{ width: 32, height: 32 }} />
               </a>
               <a href="https://x.com/__jeffreys?s=11" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform block">
-                <img src="/twitter (X).svg" alt="Twitter (X)" className="w-8 h-8 object-contain scale-125" style={{ width: 32, height: 32 }} />
+                <img src="/images/icons/twitter-x.svg" alt="Twitter (X)" className="w-8 h-8 object-contain scale-125" style={{ width: 32, height: 32 }} />
               </a>
               <a href="https://www.threads.com/@Jeffreyhughes.jr" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform block">
-                <img src="/threads.svg" alt="Threads" className="w-8 h-8 object-contain scale-125" style={{ width: 32, height: 32 }} />
+                <img src="/images/icons/threads.svg" alt="Threads" className="w-8 h-8 object-contain scale-125" style={{ width: 32, height: 32 }} />
               </a>
               <a href="https://www.tiktok.com/@jeffreyhughesjr1?_r=1&_t=ZS-99NP0V2pekf" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform block">
-                <img src="/tiktok.svg" alt="TikTok" className="w-8 h-8 object-contain scale-125" style={{ width: 32, height: 32 }} />
+                <img src="/images/icons/tiktok.svg" alt="TikTok" className="w-8 h-8 object-contain scale-125" style={{ width: 32, height: 32 }} />
               </a>
             </div>
             

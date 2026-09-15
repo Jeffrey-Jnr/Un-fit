@@ -48,7 +48,7 @@ export default function AboutAuthor() {
         {/* Left Side: Photo */}
         <div className="author-image w-full md:w-2/5 lg:w-[45%] h-[50vh] md:h-auto min-h-[500px] lg:min-h-[700px] relative bg-white flex items-end justify-center overflow-hidden opacity-0 will-change-transform">
           <Image 
-            src="/Jeffrey.jpg" 
+            src="/images/author/jeffrey.jpg" 
             alt="Jeffrey Hughes Jr." 
             fill
             sizes="(max-width: 768px) 100vw, 50vw"

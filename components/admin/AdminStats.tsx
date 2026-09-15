@@ -27,7 +27,7 @@ export default function AdminStats({ orders }: AdminStatsProps) {
           </p>
         </div>
         <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
-          <Image src="/sales-amount-svgrepo-com.svg?v=2" alt="Revenue" width={28} height={28} className="w-6 h-6 lg:w-7 lg:h-7" />
+          <Image src="/images/icons/sales-amount.svg?v=2" alt="Revenue" width={28} height={28} className="w-6 h-6 lg:w-7 lg:h-7" />
         </div>
       </div>
 
@@ -41,7 +41,7 @@ export default function AdminStats({ orders }: AdminStatsProps) {
           </p>
         </div>
         <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
-          <Image src="/cart-shopping-svgrepo-com.svg?v=2" alt="Orders" width={28} height={28} className="w-6 h-6 lg:w-7 lg:h-7" />
+          <Image src="/images/icons/cart-shopping.svg?v=2" alt="Orders" width={28} height={28} className="w-6 h-6 lg:w-7 lg:h-7" />
         </div>
       </div>
 
@@ -55,7 +55,7 @@ export default function AdminStats({ orders }: AdminStatsProps) {
           </p>
         </div>
         <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
-          <Image src="/delivery-car-svgrepo-com.svg?v=2" alt="Pending Deliveries" width={28} height={28} className="w-6 h-6 lg:w-7 lg:h-7" />
+          <Image src="/images/icons/delivery-car.svg?v=2" alt="Pending Deliveries" width={28} height={28} className="w-6 h-6 lg:w-7 lg:h-7" />
         </div>
       </div>
     </div>
