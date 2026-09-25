@@ -7,15 +7,16 @@ import { Turnstile } from '@marsidev/react-turnstile';
 import { createClient } from "@/utils/supabase/client";
 import { REGIONS, BASE_BOOK_PRICE } from "@/components/checkout/constants";
 import OrderSummaryCard from "@/components/checkout/OrderSummaryCard";
+import { useRouter } from "next/navigation";
 
 const PaystackButton = dynamic(() => import("./PaystackButton"), { ssr: false });
 
 interface CheckoutFlowProps {
-  onBack?: () => void;
   onSuccess?: (reference: { reference: string }) => void;
 }
 
-export default function CheckoutFlow({ onBack, onSuccess }: CheckoutFlowProps) {
+export default function CheckoutFlow({ onSuccess }: CheckoutFlowProps) {
+  const router = useRouter();
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [step, setStep] = useState(1);
   const [isMobileSummaryExpanded, setIsMobileSummaryExpanded] = useState(false);
@@ -122,9 +123,7 @@ export default function CheckoutFlow({ onBack, onSuccess }: CheckoutFlowProps) {
   };
 
   const defaultOnSuccess = (reference: { reference: string }) => {
-    if (typeof window !== "undefined") {
-       window.location.href = `/checkout/success?order=${reference.reference}&amount=${total.toFixed(2)}`;
-    }
+    router.push(`/checkout/success?order=${reference.reference}&amount=${total.toFixed(2)}`);
   };
 
   const finalOnSuccess = onSuccess || defaultOnSuccess;
