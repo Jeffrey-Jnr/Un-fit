@@ -5,8 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { X, MapPin, Globe } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { X } from "lucide-react";
 import NewsletterModal from "@/components/NewsletterModal";
 
 if (typeof window !== "undefined") {
@@ -15,7 +14,6 @@ if (typeof window !== "undefined") {
 
 export default function BuySection() {
   const container = useRef<HTMLDivElement>(null);
-  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isPrelaunch = process.env.NEXT_PUBLIC_IS_PRELAUNCH === 'true';
 
@@ -144,40 +142,25 @@ export default function BuySection() {
               >
                 <X size={20} />
               </button>
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-serif text-gray-900 mb-2">Choose your location</h3>
-                <p className="text-gray-500 text-sm">Where would you like your paperback delivered?</p>
+              <div className="text-center mt-4 mb-6">
+                <div className="w-16 h-16 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-serif text-gray-900 mb-3">High Demand</h3>
+                <p className="text-gray-600 text-[15px] leading-relaxed">
+                  Due to an overwhelming surge in orders, checkout is temporarily paused while we process the current batch. 
+                  <br/><br/>
+                  Please check back shortly!
+                </p>
               </div>
-              <div className="flex flex-col gap-4">
-                <button 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    router.push("/checkout");
-                  }}
-                  className="w-full text-left group flex items-center p-4 border border-gray-200 rounded-xl hover:border-black active:border-black hover:bg-gray-50 active:bg-gray-50 transition-all duration-300 cursor-pointer"
-                >
-                  <div className="w-12 h-12 bg-transparent text-black border border-black rounded-full flex items-center justify-center mr-4 group-hover:bg-black group-hover:text-white group-active:bg-black group-active:text-white transition-colors">
-                    <MapPin size={24} />
-                  </div>
-                  <div className="text-left flex-1">
-                    <div className="font-medium text-gray-900 text-lg">Ghana</div>
-                    <div className="text-gray-500 text-sm">Local delivery & pickup</div>
-                  </div>
-                </button>
-                <a 
-                  href="#amazon-global" 
-                  onClick={() => setIsModalOpen(false)}
-                  className="group flex items-center p-4 border border-gray-200 rounded-xl hover:border-black active:border-black hover:bg-gray-50 active:bg-gray-50 transition-all duration-300 cursor-pointer"
-                >
-                  <div className="w-12 h-12 bg-transparent text-black border border-black rounded-full flex items-center justify-center mr-4 group-hover:bg-black group-hover:text-white group-active:bg-black group-active:text-white transition-colors">
-                    <Globe size={24} />
-                  </div>
-                  <div className="text-left flex-1">
-                    <div className="font-medium text-gray-900 text-lg">International</div>
-                    <div className="text-gray-500 text-sm">Order via Amazon</div>
-                  </div>
-                </a>
-              </div>
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="w-full px-6 py-4 bg-[#ea580c] text-white font-medium rounded-xl text-lg hover:bg-orange-700 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+              >
+                Okay, I&apos;ll wait
+              </button>
             </div>
           </div>
         )

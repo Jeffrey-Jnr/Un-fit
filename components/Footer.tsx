@@ -190,10 +190,10 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-100 text-sm text-gray-500 gap-4">
             <div className="flex items-center gap-6">
               <a href="https://www.instagram.com/jeffreyhughes.jr/" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform block">
-                <img src="/images/icons/instagram.svg" alt="Instagram" className="w-8 h-8 object-contain scale-125" style={{ width: 32, height: 32 }} />
+                <img src="/images/icons/instagram.svg" alt="Instagram" className="w-8 h-8 object-contain" style={{ width: 32, height: 32 }} />
               </a>
               <a href="https://x.com/__jeffreys?s=11" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform block">
-                <img src="/images/icons/twitter-x.svg" alt="Twitter (X)" className="w-8 h-8 object-contain scale-125" style={{ width: 32, height: 32 }} />
+                <img src="/images/icons/twitter-x.svg" alt="Twitter (X)" className="w-8 h-8 object-contain" style={{ width: 32, height: 32 }} />
               </a>
               <a href="https://www.threads.com/@Jeffreyhughes.jr" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform block">
                 <img src="/images/icons/threads.svg" alt="Threads" className="w-8 h-8 object-contain scale-125" style={{ width: 32, height: 32 }} />
