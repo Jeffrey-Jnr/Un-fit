@@ -211,7 +211,7 @@ export default function BuySection() {
               <X size={20} />
             </button>
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#ea580c] mb-6">
-               <img src="/images/icons/sad-face-svgrepo-com.svg" alt="Sad Face" className="w-10 h-10 object-contain brightness-0 invert" />
+               <img src="/images/icons/hour-glass-svgrepo-com.svg" alt="Hourglass" className="w-10 h-10 object-contain brightness-0 invert" />
             </div>
             <h3 className="text-2xl font-serif text-gray-900 mb-4">{alertModal.title}</h3>
             <p className="text-gray-600 mb-8">{alertModal.message}</p>
