@@ -43,7 +43,7 @@ export default function FreeSample() {
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-8 lg:gap-24 items-center pt-10 lg:pt-8 pb-8 lg:pb-12 px-6 lg:px-12 relative z-10">
           
           {/* Left: Book Composition */}
-          <div className="sample-image order-2 lg:order-1 w-full flex flex-col items-center justify-center -mt-8 md:mt-0 opacity-0">
+          <div className="sample-image order-2 lg:order-1 w-full flex flex-col items-center justify-center mt-4 md:mt-0 opacity-0">
              <div className="relative h-[280px] sm:h-[360px] md:h-[440px] lg:h-[540px] w-full flex items-center justify-center mb-8 lg:mb-0">
                <Image 
                  src="/images/books/books-trimmed.png" 
@@ -71,7 +71,7 @@ export default function FreeSample() {
               first chapter.
             </h2>
 
-            <p className="text-center lg:text-left text-[17px] md:text-xl text-gray-600 font-light leading-relaxed mb-0 md:mb-10 max-w-lg opacity-0 will-change-transform">
+            <p className="text-center lg:text-left text-[17px] md:text-xl text-gray-600 font-light leading-relaxed mb-6 md:mb-10 max-w-lg opacity-0 will-change-transform">
               Get a taste of what (un)Fit is all about. Download the first chapter and see if it speaks to you.
             </p>
 
