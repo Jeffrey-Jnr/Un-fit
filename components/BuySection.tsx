@@ -96,7 +96,7 @@ export default function BuySection() {
                   setAlertModal({
                     isOpen: true,
                     title: "E-Book Coming Soon",
-                    message: "The E-Book version is currently in the works and waiting for final approval. Please check back shortly!"
+                    message: "The E-Book version is currently in the works. Please check back shortly!"
                   });
                 }}
                 className="flex-1 sm:flex-none px-2 sm:px-10 py-3 sm:py-4 bg-white border border-gray-200 text-[#ea580c] font-normal md:font-medium rounded-full text-[15px] sm:text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 min-w-0 md:min-w-[220px] text-center shadow-lg"
@@ -176,8 +176,8 @@ export default function BuySection() {
                     setIsModalOpen(false);
                     setAlertModal({
                       isOpen: true,
-                      title: "Amazon Pending Approval",
-                      message: "We are currently waiting for Amazon to approve the book. International orders will be available very shortly! Thank you for your patience."
+                      title: "Amazon International Orders",
+                      message: "International orders via Amazon are currently being set up and will be available very shortly! Thank you for your patience."
                     });
                   }}
                   className="w-full text-left group flex items-center p-4 border border-gray-200 rounded-xl hover:border-black active:border-black hover:bg-gray-50 active:bg-gray-50 transition-all duration-300 cursor-pointer"
