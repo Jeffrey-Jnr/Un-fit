@@ -87,14 +87,15 @@ export default function BuySection() {
                 Get Notified
               </button>
             ) : (
-              <a 
-                href="#" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 sm:flex-none px-2 sm:px-10 py-3 sm:py-4 bg-white border border-gray-200 text-[#ea580c] font-normal md:font-medium rounded-full text-[15px] sm:text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 min-w-0 md:min-w-[220px] text-center shadow-lg"
+              <button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsModalOpen(true);
+                }}
+                className="flex-1 sm:flex-none px-2 sm:px-10 py-3 sm:py-4 bg-white border border-gray-200 text-[#ea580c] font-normal md:font-medium rounded-full text-[15px] sm:text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 min-w-0 md:min-w-[220px] text-center shadow-lg cursor-pointer"
               >
                 Get the E-Book
-              </a>
+              </button>
             )}
           </div>
         </div>
