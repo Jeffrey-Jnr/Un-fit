@@ -5,7 +5,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { X } from "lucide-react";
+import { X, MapPin, Globe } from "lucide-react";
+import { useRouter } from "next/navigation";
 import NewsletterModal from "@/components/NewsletterModal";
 
 if (typeof window !== "undefined") {
@@ -14,7 +15,9 @@ if (typeof window !== "undefined") {
 
 export default function BuySection() {
   const container = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [alertModal, setAlertModal] = useState({ isOpen: false, title: "", message: "" });
   const isPrelaunch = process.env.NEXT_PUBLIC_IS_PRELAUNCH === 'true';
 
   useEffect(() => {
@@ -90,9 +93,13 @@ export default function BuySection() {
               <button 
                 onClick={(e) => {
                   e.preventDefault();
-                  setIsModalOpen(true);
+                  setAlertModal({
+                    isOpen: true,
+                    title: "E-Book Coming Soon",
+                    message: "The E-Book version is currently in the works and waiting for final approval. Please check back shortly!"
+                  });
                 }}
-                className="flex-1 sm:flex-none px-2 sm:px-10 py-3 sm:py-4 bg-white border border-gray-200 text-[#ea580c] font-normal md:font-medium rounded-full text-[15px] sm:text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 min-w-0 md:min-w-[220px] text-center shadow-lg cursor-pointer"
+                className="flex-1 sm:flex-none px-2 sm:px-10 py-3 sm:py-4 bg-white border border-gray-200 text-[#ea580c] font-normal md:font-medium rounded-full text-[15px] sm:text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 min-w-0 md:min-w-[220px] text-center shadow-lg"
               >
                 Get the E-Book
               </button>
@@ -143,28 +150,79 @@ export default function BuySection() {
               >
                 <X size={20} />
               </button>
-              <div className="text-center mt-4 mb-6">
-                <div className="w-16 h-16 bg-[#ea580c] text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="currentColor" viewBox="0 0 30 30">
-                    <path d="M19.5 10c.277 0 .5.223.5.5v3c0 .277-.223.5-.5.5s-.5-.223-.5-.5v-3c0-.277.223-.5.5-.5zm-9 0c.277 0 .5.223.5.5v3c0 .277-.223.5-.5.5s-.5-.223-.5-.5v-3c0-.277.223-.5.5-.5zM15 20c-2.104 0-4.186.756-5.798 2.104-.542.4.148 1.223.638.76C11.268 21.67 13.137 21 15 21s3.732.67 5.16 1.864c.478.45 1.176-.364.638-.76C19.186 20.756 17.104 20 15 20zm0-20C6.722 0 0 6.722 0 15c0 8.278 6.722 15 15 15 8.278 0 15-6.722 15-15 0-8.278-6.722-15-15-15zm0 1c7.738 0 14 6.262 14 14s-6.262 14-14 14S1 22.738 1 15 7.262 1 15 1z"/>
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-serif text-gray-900 mb-3">High Demand</h3>
-                <p className="text-gray-600 text-[15px] leading-relaxed">
-                  Due to an overwhelming surge in orders, checkout is temporarily paused while we process the current batch. 
-                  <br/><br/>
-                  Please check back shortly!
-                </p>
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-serif text-gray-900 mb-2">Choose your location</h3>
+                <p className="text-gray-500 text-sm">Where would you like your paperback delivered?</p>
               </div>
-              <button 
-                onClick={() => setIsModalOpen(false)}
-                className="w-full px-6 py-4 bg-[#ea580c] text-white font-medium rounded-xl text-lg hover:bg-orange-700 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
-              >
-                Okay, I&apos;ll wait
-              </button>
+              <div className="flex flex-col gap-4">
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/checkout");
+                  }}
+                  className="w-full text-left group flex items-center p-4 border border-gray-200 rounded-xl hover:border-black active:border-black hover:bg-gray-50 active:bg-gray-50 transition-all duration-300 cursor-pointer"
+                >
+                  <div className="w-12 h-12 bg-transparent text-black border border-black rounded-full flex items-center justify-center mr-4 group-hover:bg-black group-hover:text-white group-active:bg-black group-active:text-white transition-colors">
+                    <MapPin size={24} />
+                  </div>
+                  <div className="text-left flex-1">
+                    <div className="font-medium text-gray-900 text-lg">Ghana</div>
+                    <div className="text-gray-500 text-sm">Local delivery & pickup</div>
+                  </div>
+                </button>
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsModalOpen(false);
+                    setAlertModal({
+                      isOpen: true,
+                      title: "Amazon Pending Approval",
+                      message: "We are currently waiting for Amazon to approve the book. International orders will be available very shortly! Thank you for your patience."
+                    });
+                  }}
+                  className="w-full text-left group flex items-center p-4 border border-gray-200 rounded-xl hover:border-black active:border-black hover:bg-gray-50 active:bg-gray-50 transition-all duration-300 cursor-pointer"
+                >
+                  <div className="w-12 h-12 bg-transparent text-black border border-black rounded-full flex items-center justify-center mr-4 group-hover:bg-black group-hover:text-white group-active:bg-black group-active:text-white transition-colors">
+                    <Globe size={24} />
+                  </div>
+                  <div className="text-left flex-1">
+                    <div className="font-medium text-gray-900 text-lg">International</div>
+                    <div className="text-gray-500 text-sm">Order via Amazon</div>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         )
+      )}
+
+      {/* Alert Modal for Pending Features (Amazon & E-Book) */}
+      {alertModal.isOpen && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            onClick={() => setAlertModal({ ...alertModal, isOpen: false })}
+          />
+          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden transform transition-all p-6 sm:p-8 animate-in fade-in zoom-in duration-300 text-center">
+            <button 
+              onClick={() => setAlertModal({ ...alertModal, isOpen: false })}
+              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors bg-gray-50 hover:bg-gray-100 rounded-full cursor-pointer"
+            >
+              <X size={20} />
+            </button>
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#ea580c] mb-6">
+               <img src="/images/icons/sad-face-svgrepo-com.svg" alt="Sad Face" className="w-10 h-10 object-contain brightness-0 invert" />
+            </div>
+            <h3 className="text-2xl font-serif text-gray-900 mb-4">{alertModal.title}</h3>
+            <p className="text-gray-600 mb-8">{alertModal.message}</p>
+            <button
+              onClick={() => setAlertModal({ ...alertModal, isOpen: false })}
+              className="w-full py-4 bg-[#ea580c] hover:bg-orange-700 text-white font-medium rounded-full transition-colors shadow-lg"
+            >
+              Okay, I&apos;ll check back later!
+            </button>
+          </div>
+        </div>
       )}
     </section>
   );
