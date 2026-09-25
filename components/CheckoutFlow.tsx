@@ -7,15 +7,16 @@ import { Turnstile } from '@marsidev/react-turnstile';
 import { createClient } from "@/utils/supabase/client";
 import { REGIONS, BASE_BOOK_PRICE } from "@/components/checkout/constants";
 import OrderSummaryCard from "@/components/checkout/OrderSummaryCard";
+import { useRouter } from "next/navigation";
 
 const PaystackButton = dynamic(() => import("./PaystackButton"), { ssr: false });
 
 interface CheckoutFlowProps {
-  onBack?: () => void;
   onSuccess?: (reference: { reference: string }) => void;
 }
 
-export default function CheckoutFlow({ onBack, onSuccess }: CheckoutFlowProps) {
+export default function CheckoutFlow({ onSuccess }: CheckoutFlowProps) {
+  const router = useRouter();
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [step, setStep] = useState(1);
   const [isMobileSummaryExpanded, setIsMobileSummaryExpanded] = useState(false);
@@ -122,9 +123,7 @@ export default function CheckoutFlow({ onBack, onSuccess }: CheckoutFlowProps) {
   };
 
   const defaultOnSuccess = (reference: { reference: string }) => {
-    if (typeof window !== "undefined") {
-       window.location.href = `/checkout/success?order=${reference.reference}&amount=${total.toFixed(2)}`;
-    }
+    router.push(`/checkout/success?order=${reference.reference}&amount=${total.toFixed(2)}`);
   };
 
   const finalOnSuccess = onSuccess || defaultOnSuccess;
@@ -239,9 +238,9 @@ export default function CheckoutFlow({ onBack, onSuccess }: CheckoutFlowProps) {
                   <div className="bg-gray-50 border border-gray-200 p-4 rounded-md mb-6 text-sm text-gray-600">
                     <p className="font-medium text-gray-900 mb-1.5">Delivery Information:</p>
                     <ul className="list-disc pl-4 space-y-1">
-                      <li><span className="font-medium text-gray-800">Greater Accra (GH₵ 30):</span> Door-to-door delivery to your address.</li>
-                      <li><span className="font-medium text-gray-800">Other Regions (GH₵ 45 - 65):</span> VIP / Station pick-up. We will contact you with station details.</li>
-                      <li><span className="font-medium text-gray-800">Free Pick-up:</span> Available at designated locations. We will reach out to coordinate.</li>
+                      <li><span className="font-medium text-gray-800">Greater Accra (GH₵ 45):</span> Door-to-door delivery to your address.</li>
+                      <li><span className="font-medium text-gray-800">Other Regions (GH₵ 45 - 80):</span> VIP / Station pick-up. We will contact you with station details.</li>
+                      <li><span className="font-medium text-gray-800">Free Pick-up:</span> We are in the process of getting a free pick-up spot and it will be announced shortly.</li>
                     </ul>
                   </div>
 
@@ -284,14 +283,24 @@ export default function CheckoutFlow({ onBack, onSuccess }: CheckoutFlowProps) {
                               {REGIONS.map(r => (
                                 <div 
                                   key={r.name}
-                                  className="px-4 py-3 hover:bg-orange-50 cursor-pointer text-sm text-gray-700 flex justify-between items-center border-b border-gray-100 last:border-0"
+                                  className={`px-4 py-3 text-sm flex justify-between items-center border-b border-gray-100 last:border-0 ${
+                                    r.name === "Free Pick-up" 
+                                      ? "opacity-50 cursor-not-allowed bg-gray-50" 
+                                      : "hover:bg-orange-50 cursor-pointer text-gray-700"
+                                  }`}
                                   onClick={() => {
-                                    setFormData({...formData, region: r.name});
-                                    setIsRegionDropdownOpen(false);
+                                    if (r.name !== "Free Pick-up") {
+                                      setFormData({...formData, region: r.name});
+                                      setIsRegionDropdownOpen(false);
+                                    }
                                   }}
                                 >
-                                  <span className="font-medium text-gray-800">{r.name}</span>
-                                  <span className="text-gray-500 text-xs">{r.cost > 0 ? `GH₵ ${r.cost}` : 'Free'}</span>
+                                  <span className={`font-medium ${r.name === "Free Pick-up" ? "text-gray-500" : "text-gray-800"}`}>
+                                    {r.name}
+                                  </span>
+                                  <span className={`text-xs ${r.name === "Free Pick-up" ? "text-gray-400" : "text-gray-500"}`}>
+                                    {r.name === "Free Pick-up" ? 'Coming Soon' : (r.cost > 0 ? `GH₵ ${r.cost}` : 'Free')}
+                                  </span>
                                 </div>
                               ))}
                             </div>
@@ -317,7 +326,7 @@ export default function CheckoutFlow({ onBack, onSuccess }: CheckoutFlowProps) {
                     
                     {selectedRegion?.type === "pickup" && (
                       <div className="p-4 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-600 mt-2">
-                        Free Pick-up selected. You will be contacted with pick-up location details.
+                        Free Pick-up selected. We are in the process of getting a free pick-up spot and it will be announced shortly.
                       </div>
                     )}
                     

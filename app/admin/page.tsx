@@ -77,7 +77,7 @@ export default function AdminDashboard() {
     }
     
     checkAuthAndFetch();
-  }, []);
+  }, [router]);
 
   const handleStatusChange = async (id: string, newStatus: string) => {
     // Optimistic update
