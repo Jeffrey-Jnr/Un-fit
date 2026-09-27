@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { Download } from "lucide-react";
 import gsap from "gsap";
@@ -15,6 +15,12 @@ if (typeof window !== "undefined") {
 export default function FreeSample() {
   const container = useRef<HTMLElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  useEffect(() => {
+    const handleOpenModal = () => setIsModalOpen(true);
+    window.addEventListener('openFreeSampleModal', handleOpenModal);
+    return () => window.removeEventListener('openFreeSampleModal', handleOpenModal);
+  }, []);
 
   useGSAP(() => {
     const tl = gsap.timeline({

@@ -274,13 +274,13 @@ export default function Hero() {
         <div className="gsap-hero-bottom flex flex-col items-center text-center w-full z-30 mb-2 md:mb-8 lg:mb-12">
           <div className="flex flex-row gap-2 sm:gap-4 w-full sm:w-auto justify-center invisible opacity-0 px-1 sm:px-0">
             <button 
-              onClick={() => scrollToSection('buy')}
+              onClick={() => window.dispatchEvent(new Event('openBuyModal'))}
               className="flex-1 sm:flex-none px-2 sm:px-8 py-3 sm:py-4 text-[13px] sm:text-base bg-[var(--color-primary)] text-white font-medium rounded-full hover:bg-orange-800 transition-all duration-300 hover:-translate-y-1 relative flex items-center justify-center text-center leading-snug"
             >
               Get Your Copy
             </button>
             <button 
-              onClick={() => scrollToSection('sample')}
+              onClick={() => window.dispatchEvent(new Event('openFreeSampleModal'))}
               className="flex-1 sm:flex-none px-2 sm:px-8 py-3 sm:py-4 text-[13px] sm:text-base bg-transparent text-[var(--color-dark)] border border-[var(--color-dark)] font-medium rounded-full hover:bg-[var(--color-dark)] hover:text-white transition-all duration-300 hover:-translate-y-1 relative flex items-center justify-center text-center leading-snug"
             >
               <span className="hidden sm:inline">Read the First Chapter Free</span>
