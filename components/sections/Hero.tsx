@@ -300,12 +300,19 @@ export default function Hero() {
               alt="Amazon" 
               className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-36 lg:h-48" 
             />
-            <Image 
-              src="/images/branding/sellar-logo.png" 
-              alt="Selar" 
-              width={800} height={400}
-              className="object-contain w-[30%] h-auto sm:w-auto sm:h-20 md:h-36 lg:h-48" 
-            />
+            <a 
+              href="https://selar.com/8484v9r184" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-[30%] sm:w-auto flex items-center justify-center hover:opacity-100 transition-opacity"
+            >
+              <Image 
+                src="/images/branding/sellar-logo.png" 
+                alt="Selar" 
+                width={800} height={400}
+                className="object-contain w-full h-auto sm:w-auto sm:h-20 md:h-36 lg:h-48" 
+              />
+            </a>
           </div>
         </div>
 

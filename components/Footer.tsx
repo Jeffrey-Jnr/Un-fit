@@ -86,9 +86,20 @@ export default function Footer() {
                 <a href="#buy" className="py-3 px-6 bg-black text-white text-center rounded-lg font-normal hover:bg-[#ea580c] transition-colors">
                   {process.env.NEXT_PUBLIC_IS_PRELAUNCH === 'true' ? "Join the Waitlist" : "Order Physical Copy"}
                 </a>
-                <a href="#buy" className="py-3 px-6 bg-black text-white text-center rounded-lg font-normal hover:bg-[#ea580c] transition-colors">
-                  {process.env.NEXT_PUBLIC_IS_PRELAUNCH === 'true' ? "Get Notified" : "Get E-Book"}
-                </a>
+                {process.env.NEXT_PUBLIC_IS_PRELAUNCH === 'true' ? (
+                  <a href="#buy" className="py-3 px-6 bg-black text-white text-center rounded-lg font-normal hover:bg-[#ea580c] transition-colors">
+                    Get Notified
+                  </a>
+                ) : (
+                  <a 
+                    href="https://selar.com/8484v9r184" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="py-3 px-6 bg-black text-white text-center rounded-lg font-normal hover:bg-[#ea580c] transition-colors"
+                  >
+                    Get E-Book
+                  </a>
+                )}
               </div>
             </div>
             
