@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function Footer() {
@@ -8,6 +8,11 @@ export default function Footer() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(/Android|iPhone|iPad|iPod|Instagram|FBAN|FBAV/i.test(navigator.userAgent) || window.innerWidth < 768);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -93,8 +98,14 @@ export default function Footer() {
                 ) : (
                   <a 
                     href="https://selar.com/8484v9r184" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                    target={isMobile ? undefined : "_blank"} 
+                    rel={isMobile ? undefined : "noopener noreferrer"}
+                    onClick={(e) => {
+                      if (/Android|iPhone|iPad|iPod|Instagram|FBAN|FBAV/i.test(navigator.userAgent) || window.innerWidth < 768) {
+                        e.preventDefault();
+                        window.location.href = "https://selar.com/8484v9r184";
+                      }
+                    }}
                     className="py-3 px-6 bg-black text-white text-center rounded-lg font-normal hover:bg-[#ea580c] transition-colors"
                   >
                     Get E-Book

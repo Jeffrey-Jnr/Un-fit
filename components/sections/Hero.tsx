@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -12,6 +12,11 @@ if (typeof window !== "undefined") {
 
 export default function Hero() {
   const container = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(/Android|iPhone|iPad|iPod|Instagram|FBAN|FBAV/i.test(navigator.userAgent) || window.innerWidth < 768);
+  }, []);
 
   useGSAP(() => {
     // Master timeline with initial delay
@@ -302,8 +307,14 @@ export default function Hero() {
             />
             <a 
               href="https://selar.com/8484v9r184" 
-              target="_blank" 
-              rel="noopener noreferrer"
+              target={isMobile ? undefined : "_blank"} 
+              rel={isMobile ? undefined : "noopener noreferrer"}
+              onClick={(e) => {
+                if (/Android|iPhone|iPad|iPod|Instagram|FBAN|FBAV/i.test(navigator.userAgent) || window.innerWidth < 768) {
+                  e.preventDefault();
+                  window.location.href = "https://selar.com/8484v9r184";
+                }
+              }}
               className="w-[30%] sm:w-auto flex items-center justify-center hover:opacity-100 transition-opacity"
             >
               <Image 
