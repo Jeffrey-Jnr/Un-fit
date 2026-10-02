@@ -18,9 +18,11 @@ export default function BuySection() {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [alertModal, setAlertModal] = useState({ isOpen: false, title: "", message: "" });
+  const [isMobile, setIsMobile] = useState(false);
   const isPrelaunch = process.env.NEXT_PUBLIC_IS_PRELAUNCH === 'true';
 
   useEffect(() => {
+    setIsMobile(/Android|iPhone|iPad|iPod|Instagram|FBAN|FBAV/i.test(navigator.userAgent) || window.innerWidth < 768);
     const handleOpenModal = () => {
       setIsModalOpen(true);
     };
@@ -92,8 +94,14 @@ export default function BuySection() {
             ) : (
               <a 
                 href="https://selar.com/8484v9r184"
-                target="_blank"
-                rel="noopener noreferrer"
+                target={isMobile ? undefined : "_blank"}
+                rel={isMobile ? undefined : "noopener noreferrer"}
+                onClick={(e) => {
+                  if (/Android|iPhone|iPad|iPod|Instagram|FBAN|FBAV/i.test(navigator.userAgent) || window.innerWidth < 768) {
+                    e.preventDefault();
+                    window.location.href = "https://selar.com/8484v9r184";
+                  }
+                }}
                 className="flex-1 sm:flex-none px-2 sm:px-10 py-3 sm:py-4 bg-white border border-gray-200 text-[#ea580c] font-normal md:font-medium rounded-full text-[15px] sm:text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 min-w-0 md:min-w-[220px] text-center shadow-lg inline-flex items-center justify-center"
               >
                 Get the E-Book
